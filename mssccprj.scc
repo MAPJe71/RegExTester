@@ -1,9 +1,0 @@
-SCC = This is a Source Code Control file
-
-[RegExTester.csproj]
-SCC_Aux_Path = "D:\VSS\Private SourceSafe"
-SCC_Project_Name = "$/RegExTester", BAAAAAAA
-
-[RegExTester.sln]
-SCC_Aux_Path = "D:\VSS\Private SourceSafe"
-SCC_Project_Name = "$/RegExTester", BAAAAAAA

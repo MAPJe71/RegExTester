@@ -1,9 +1,21 @@
-Microsoft Visual Studio Solution File, Format Version 8.00
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual C# Express 2005
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegExTester", "RegExTester.csproj", "{33AA191A-9F36-49BE-8525-9CCF4C510334}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
 EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{33AA191A-9F36-49BE-8525-9CCF4C510334}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33AA191A-9F36-49BE-8525-9CCF4C510334}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33AA191A-9F36-49BE-8525-9CCF4C510334}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33AA191A-9F36-49BE-8525-9CCF4C510334}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(SourceCodeControl) = preSolution
 		SccNumberOfProjects = 2
 		SccLocalPath0 = .
@@ -12,19 +24,5 @@ Global
 		SccProjectUniqueName1 = RegExTester.csproj
 		SccLocalPath1 = .
 		CanCheckoutShared = false
-	EndGlobalSection
-	GlobalSection(SolutionConfiguration) = preSolution
-		Debug = Debug
-		Release = Release
-	EndGlobalSection
-	GlobalSection(ProjectConfiguration) = postSolution
-		{33AA191A-9F36-49BE-8525-9CCF4C510334}.Debug.ActiveCfg = Debug|.NET
-		{33AA191A-9F36-49BE-8525-9CCF4C510334}.Debug.Build.0 = Debug|.NET
-		{33AA191A-9F36-49BE-8525-9CCF4C510334}.Release.ActiveCfg = Release|.NET
-		{33AA191A-9F36-49BE-8525-9CCF4C510334}.Release.Build.0 = Release|.NET
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-	EndGlobalSection
-	GlobalSection(ExtensibilityAddIns) = postSolution
 	EndGlobalSection
 EndGlobal
