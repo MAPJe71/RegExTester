@@ -47,5 +47,10 @@ namespace RegExTester
         {
             Process.Start("mailto://opablo@gmail.com");
         }
+
+        private void frmAbout_Load(object sender, EventArgs e)
+        {
+            lblTitle.Text += " - v" + Application.ProductVersion.ToString();
+        }
     }
 }

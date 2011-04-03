@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using System.Drawing;
 using System.Diagnostics;
 using System.Windows.Forms;
@@ -13,13 +14,12 @@ namespace RegExTester
         private const string STOPPED_MODE_BUTTON_TEXT = "Test [F5]";
         private const string RUNNING_MODE_BUTTON_TEXT = "Stop [Esc]";
 
-        private string _lastFindString = "";       // Used by the Find Next Feature
-
         private Thread worker; // The worker that really does the execution in a separate thread.
 
         public frmMain()
         {
             InitializeComponent();
+            ActiveControl = txtRegEx;
         }
 
         /// <summary>
@@ -28,12 +28,15 @@ namespace RegExTester
         private void MainForm_Load(object sender, System.EventArgs e)
         {
             // Writting some version information on screen
-            this.Text += " - v. " + Application.ProductVersion.ToString();
-            sbpContext.Text = "Using CLR v. " + CLRInfos.Version();
+            this.Text += " - v" + Application.ProductVersion.ToString();
+            sbpContext.Text = string.Format("CLR {0}.{1}", Environment.Version.Major, Environment.Version.Minor);
 
             // This is a critical line.
             // It allows the other thread to access the controls of this class/object.
             Control.CheckForIllegalCrossThreadCalls = false;
+
+            // This sets the initial UI with Replace Mode Off
+            cbReplaceMode.Checked = false;
         }
 
         /// <summary>
@@ -67,7 +70,7 @@ namespace RegExTester
         }
 
         /// <summary>
-        /// Prepare and launch the asynchronous execution using the backgroundWorker
+        /// Prepare and launch the asynchronous execution using another thread
         /// </summary>
         private void StartTest()
         {
@@ -89,7 +92,8 @@ namespace RegExTester
         private void AbortTest()
         {
             // This generates a ThreadAbortException at the worker function AsyncTest()
-            if (worker.IsAlive) worker.Abort();
+            if (worker.IsAlive) 
+                worker.Abort();
         }
 
         /// <summary>
@@ -98,49 +102,54 @@ namespace RegExTester
         /// </summary>
         private void AsyncTest()
         {
+            int rtbSelectionStart = int.MinValue;
+            int rtbSelectionLength = int.MinValue;
+            int matchesFound = 0;
+            int matchesProcessed = 0;
+            DateTime startMoment = DateTime.Now;
+
             // Every line in this function is susceptible of a ThreadAbortException
             // Which is how the user is able to stop it.
             try
             {
-                sbpStatus.Text = "Making UI adjustments...";
-                // For performance reasons I have to ensure that the rtbText control doesn't have focus
-                bool restoreRtbTextFocus = rtbText.Focused;
-                if (rtbText.Focused) btnTest.Focus();
-
-                // Change the btnText functionality
+                // Adjustments in the UI
+                sbpStatus.Text = "Making UI Adjustments...";
                 btnTest.Text = RUNNING_MODE_BUTTON_TEXT;
+                sbpMatches.Text = string.Empty;
+                sbpExecutionTime.Text = string.Empty;
 
-                sbpStatus.Text = "Preparing the RegEx options...";
                 // Create the options object based on the UI checkboxes
+                sbpStatus.Text = "Configuring the RegEx engine...";
                 RegexOptions regexOptions = new RegexOptions();
                 if (cbIgnoreCase.Checked) regexOptions |= RegexOptions.IgnoreCase;
+                if (cbCultureInvariant.Checked) regexOptions |= RegexOptions.CultureInvariant;
                 if (cbMultiLine.Checked) regexOptions |= RegexOptions.Multiline;
                 if (cbSingleLine.Checked) regexOptions |= RegexOptions.Singleline;
-                if (cbCultureInvariant.Checked) regexOptions |= RegexOptions.CultureInvariant;
-
-                sbpStatus.Text = "Preparing the RegEx string...";
-                // Create the RegEx string with optional manipulations
-                string regexString = txtRegEx.Text;
-                if (cbIndentedInput.Checked) regexString = stripIndentation(regexString);
+                if (cbIndentedInput.Checked) regexOptions |= RegexOptions.IgnorePatternWhitespace;
 
                 sbpStatus.Text = "Creating the RegEx Engine and parsing the RegEx string...";
                 // Creates the RegEx engine passing the RegEx string and the options object
-                Regex regex = new Regex(regexString, regexOptions);
+                Regex regex = new Regex(txtRegEx.Text, regexOptions);
 
                 sbpStatus.Text = "Evaluating the RegEx against the Test Text...";
                 // This executes the Regex and collects the results
                 // The execution isn't done until a member of the matchCollection is read.
                 // So I read the Count property for the regex to really execute from start to finish
                 MatchCollection matchCollection = regex.Matches(rtbText.Text);
-                int matchesCount = matchCollection.Count;
+                matchesFound = matchCollection.Count;
+
+                // Also do the RegEx replacement if the user asked for it
+                if (cbReplaceMode.Checked)
+                {
+                    sbpStatus.Text = "Evaluating the RegEx Replace against the Test Text...";
+                    rtbResults.Text = regex.Replace(rtbText.Text, txtRepEx.Text);
+                }
 
                 sbpStatus.Text = "Preparing the Results grid...";
                 // Setup the results ListView
                 lvResult.Items.Clear();
-                lvResult.Clear();
-                lvResult.Columns.Add("Match", 408, HorizontalAlignment.Left);
-                lvResult.Columns.Add("Position", 87, HorizontalAlignment.Left);
-                lvResult.Columns.Add("Lenght", 98, HorizontalAlignment.Left);
+                for (int i = lvResult.Columns.Count; i > 3; i--) //Skip the first 3 columns
+                    lvResult.Columns.RemoveAt(i-1);   
 
                 // Add the Capture Group columns to the Results ListView
                 int[] groupNumbers = regex.GetGroupNumbers();
@@ -157,19 +166,20 @@ namespace RegExTester
                     }
                 }
 
-                sbpStatus.Text = "Preparing the Test textbox...";
                 // Store/Backup the user's cursor and selection on the RichTextBox
-                int rtbSelectionStart = rtbText.SelectionStart;
-                int rtbSelectionLength = rtbText.SelectionLength;
+                rtbSelectionStart = rtbText.SelectionStart;
+                rtbSelectionLength = rtbText.SelectionLength;
+
+                // This pauses the drawing to speed-up the work
+                rtbText.SuspendLayout();
+                lvResult.SuspendLayout();
+                lvResult.BeginUpdate();
 
                 // Reset previous highligths in the RichTextBox and save current position.
                 rtbText.SelectAll();
                 rtbText.SelectionColor = Color.Black;
 
-                // This pauses the Result ListView drawing to speed-up the process
-                lvResult.BeginUpdate();
-
-                sbpStatus.Text = "Processing the " + matchesCount + " matchs...";
+                sbpStatus.Text = "Processing the " + matchesFound + " matchs...";
                 // Process each of the Matches!
                 foreach (Match match in matchCollection)
                 {
@@ -185,18 +195,11 @@ namespace RegExTester
                     //Highligth the match in the RichTextBox
                     rtbText.Select(match.Index, match.Length);
                     rtbText.SelectionColor = Color.Red;
+
+                    matchesProcessed++;
                 }
 
-                // This turns off the Result ListView drawing pause. Now it's drawed again.
-                lvResult.EndUpdate();
-
-                // Restore RichTextBox's cursor position to the original user's position
-                rtbText.Select(rtbSelectionStart, rtbSelectionLength);
-
-                // This reverts the performance adjustments
-                if (restoreRtbTextFocus) rtbText.Focus();
-
-                sbpStatus.Text = "Test success. Processed " + matchesCount + " matches.";
+                sbpStatus.Text = "Test success.";
             }
             catch (ThreadAbortException)
             {
@@ -213,8 +216,27 @@ namespace RegExTester
                 // Restore the btnText functionality
                 btnTest.Text = STOPPED_MODE_BUTTON_TEXT;
 
-                // This turns off the Result ListView drawing pause. Now it's drawed again.
+                // Restore RichTextBox's cursor position to the original user's position
+                if (rtbSelectionStart != int.MinValue && rtbSelectionLength != int.MinValue)
+                    rtbText.Select(rtbSelectionStart, rtbSelectionLength);
+
+                if (matchesProcessed == matchesFound)
+                    sbpMatches.Text = string.Format("{0} match(es).", matchesProcessed);
+                else
+                    sbpMatches.Text = string.Format("{0} match(es) of {1} found.", matchesProcessed, matchesFound);
+
+
+                // Calculate execution time
+                TimeSpan executionTimeSpan = DateTime.Now.Subtract(startMoment);
+                if (executionTimeSpan.TotalHours > 1) sbpExecutionTime.Text = string.Format("{0} hs.", executionTimeSpan.TotalHours.ToString("##.##"));
+                else if (executionTimeSpan.TotalMinutes > 1) sbpExecutionTime.Text = string.Format("{0} mins.", executionTimeSpan.TotalMinutes.ToString("##.##"));
+                else if (executionTimeSpan.TotalSeconds > 1) sbpExecutionTime.Text = string.Format("{0} s.", executionTimeSpan.TotalSeconds.ToString("##.##"));
+                else if (executionTimeSpan.TotalMilliseconds > 1) sbpExecutionTime.Text = string.Format("{0} ms.", executionTimeSpan.TotalMilliseconds.ToString("#"));
+
+                // This reverts the rendering of the controls (turned off for performance)
                 lvResult.EndUpdate();
+                lvResult.ResumeLayout();
+                rtbText.ResumeLayout();
             }
         }
 
@@ -225,14 +247,15 @@ namespace RegExTester
         {
             if (lvResult.SelectedItems.Count == 0) return;
 
-            rtbText.HideSelection = false;
             rtbText.Select(0, 0);
 
             int position = Convert.ToInt32(lvResult.SelectedItems[0].SubItems[1].Text);
-            int lenght = Convert.ToInt32(lvResult.SelectedItems[0].SubItems[2].Text);
+            int length = Convert.ToInt32(lvResult.SelectedItems[0].SubItems[2].Text);
 
-            rtbText.Select(position, lenght);
+            rtbText.Select(position, length);
         }
+
+        #region IndentedInput and ReplaceMode UI adjustments
 
         /// <summary>
         /// Changes the multi-line properties of the RegEx control
@@ -241,75 +264,112 @@ namespace RegExTester
         {
             if (cbIndentedInput.Checked)
             {
-                //why is it that the textbox changes it's height by itself when i change it's multiline property? 
-                // I have to reset it in order to not mix up the splitter control.
-                int originalHeight = txtRegEx.Height;
-                txtRegEx.Multiline = true;
-                txtRegEx.Height = originalHeight;
+                txtRegEx.Multiline = txtRepEx.Multiline = true;
+                txtRegEx.AcceptsTab = txtRepEx.AcceptsTab = true;
+                txtRegEx.ScrollBars = txtRepEx.ScrollBars = ScrollBars.Vertical;
 
-                txtRegEx.AcceptsTab = true;
-                txtRegEx.ScrollBars = ScrollBars.Vertical;
-
-                splitContainer.IsSplitterFixed = false;
-                splitContainer.SplitterDistance = 150;
+                spctTopAndMiddle.IsSplitterFixed = false;
+                spctTopAndMiddle.SplitterDistance = 160;
             }
             else
             {
-                int originalHeight = txtRegEx.Height;
-                txtRegEx.Multiline = false;
-                txtRegEx.Height = originalHeight;
+                txtRegEx.Multiline = txtRepEx.Multiline = false;
+                txtRegEx.AcceptsTab = txtRepEx.AcceptsTab = false;
+                txtRegEx.ScrollBars = txtRepEx.ScrollBars = ScrollBars.None;
 
-                txtRegEx.AcceptsTab = false;
-                txtRegEx.ScrollBars = ScrollBars.None;
-                txtRegEx.Text = stripIndentation(txtRegEx.Text);
-
-                splitContainer.SplitterDistance = 90;
-                splitContainer.IsSplitterFixed = true;
+                spctTopAndMiddle.SplitterDistance = 100;
+                spctTopAndMiddle.IsSplitterFixed = true;
             }
         }
 
         /// <summary>
-        /// This function removes the \r \n \t \v and ' ' from any string
-        /// It's used at StartTest, cbIndentedInput_CheckedChanged and copyGenericTSMenuItem_Click
+        /// Reveals the two textboxes which enable Replace features
         /// </summary>
-        /// <param name="text">The indented string to be stripped off</param>
-        /// <returns>A single-line version of the input text stripped of tabs and spaces</returns>
-        private string stripIndentation(string text)
+        private void cbReplaceMode_CheckedChanged(object sender, EventArgs e)
         {
-            return text.Replace("\r", "").Replace("\n", "").Replace("\t", "").Replace("\v", "").Replace(" ", "");
+            if (cbReplaceMode.Checked)
+            {
+                spctRegExAndRepEx.Panel2Collapsed = false;
+                spctTextAndResults.Panel2Collapsed = false;
+                btnRegExCheatSheet.Visible = false;
+                btnRegExLibrary.Visible = false;
+                btnAbout.Visible = false;
+            }
+            else
+            {
+                spctRegExAndRepEx.Panel2Collapsed = true;
+                spctTextAndResults.Panel2Collapsed = true;
+                btnRegExCheatSheet.Visible = true;
+                btnRegExLibrary.Visible = true;
+                btnAbout.Visible = true;
+            }
         }
 
-        #region The Copy Feature implementation
+        #endregion
+
+        #region Copy Feature implementation
 
         /// <summary>
         /// Show the Copy Feature context menu with all the formating options.
         /// </summary>
         private void btnCopy_Click(object sender, EventArgs e)
         {
-            btnCopyContextMenuStrip.Show(btnCopy, new Point(0, btnCopy.Height));
+            cmsCopyButton.Show(btnCopy, new Point(0, btnCopy.Height));
         }
 
         /// <summary>
         /// This function handles all the Copy context menu options.
         /// Formats the regex and copies it to the clipboard
         /// </summary>
-        private void copyGenericTSMenuItem_Click(object sender, EventArgs e)
+        private void tsmiCopyGeneric_Click(object sender, EventArgs e)
         {
             // Grab the original text
             string regex = txtRegEx.Text;
 
-            // Optionally apply the stripIndentation funcion
-            if (cbIndentedInput.Checked) regex = stripIndentation(regex);
-
             // I used the Tag attribute of each MenuItem to now identify which was pressed
             string format = ((ToolStripMenuItem)sender).Tag.ToString();
-            if (format == "cs") 
-            {
-                regex = "@\"" + regex.Replace("\"", "\"\"") + "\""; //change  my"quo\te  to  @"my""quo\te"
-            }
-            else if (format == "html") 
+            
+            if (format == "html") 
             {
                 regex = System.Web.HttpUtility.HtmlEncode(regex);
+            }
+            else if (format.StartsWith("csharp")) 
+            {
+                regex = string.Format("@\"{0}\"", regex.Replace("\"", "\"\"")); //change  my"quo\te  to  @"my""quo\te"
+
+                if (format.EndsWith("snippet"))
+                {
+                    StringBuilder regexsb = new StringBuilder();
+                    regexsb.Append("Regex regex = new Regex(");
+                    if (cbIndentedInput.Checked && regex.Contains("\n"))
+                    {
+                        regexsb.Append("\r\n    ");
+                        regexsb.Append(Regex.Replace(regex, @"\r?\n", "$0    ", RegexOptions.Singleline));
+                    } 
+                    else
+                        regexsb.Append(regex);
+
+                    if (cbIgnoreCase.Checked || cbMultiLine.Checked || cbSingleLine.Checked || cbCultureInvariant.Checked || cbIndentedInput.Checked)
+                    {
+                        regexsb.Append(", ");
+                        if (cbIndentedInput.Checked && regex.Contains("\n"))
+                            regexsb.Append("\r\n    ");
+                        if (cbIgnoreCase.Checked) regexsb.Append("RegexOptions.IgnoreCase | ");
+                        if (cbCultureInvariant.Checked) regexsb.Append("RegexOptions.CultureInvariant | ");
+                        if (cbMultiLine.Checked) regexsb.Append("RegexOptions.Multiline | ");
+                        if (cbSingleLine.Checked) regexsb.Append("RegexOptions.Singleline | ");
+                        if (cbIndentedInput.Checked) regexsb.Append("RegexOptions.IgnorePatternWhitespace | ");
+                        regexsb.Remove(regexsb.Length - 3, 3);// 3 = len(" | ")
+                    }
+                    regexsb.AppendLine(");");
+                    regexsb.AppendLine("MatchCollection matchCollection = regex.Matches( [Target_string] );");
+                    regexsb.AppendLine("foreach (Match match in matchCollection)");
+                    regexsb.AppendLine("{");
+                    regexsb.AppendLine("    do some work;");
+                    regexsb.AppendLine("}");
+
+                    regex = regexsb.ToString();
+                }
             }
 
             // Copy it to the clipboard. Clipboard.SetText fails if regex is ""
@@ -320,122 +380,54 @@ namespace RegExTester
 
         #region Help links, Web Links and About
         
-        private void llAbout_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
-        {
-            frmAbout af = new frmAbout();
-            af.ShowDialog();
-            af.Dispose();
-        }
-
-        private void llIgnoreCase_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void btnIgnoreCase_Click(object sender, EventArgs e)
         {
             MessageBox.Show("This option makes the RegEx case-insensitive which means that 'a' and 'A' are treated as the same letter.", "Ignore Case Option", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void llCultureInvariant_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void btnCultureInvariant_Click(object sender, EventArgs e)
         {
             MessageBox.Show("If you use the Ignore Case Option you should always keep in mind the Culture Invariant Option because (\"file\" == \"FILE\") is True for many cultures (e.g. en-US) but it's False on some of them (e.g. tr-TR Turkish). Turning On this option is generally safer.", "Culture Invariant Option", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void llMultiLine_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void btnMultiLine_Click(object sender, EventArgs e)
         {
             MessageBox.Show("This option makes ^ and $ match beginning and end of each line insted of the beginning and end of the whole text.", "Treat as Multi Line Option", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void llSingleLine_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void btnSingleLine_Click(object sender, EventArgs e)
         {
             MessageBox.Show("This option makes . match every character including newline.", "Treat as Single Line Option", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void llIndentedInput_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void btnIndentedInput_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(@"If you activate this option the RegEx will be stripped of \r \n \t \v and spaces before execution. This allows you to write thouse ugly, long and cryptic RegEx in an indented and spaced fashion.", "Indented Input Option", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(@"If you activate this option the RegEx will be stripped of \r \n \t \v and spaces before execution. This allows you to write thouse ugly, long and cryptic RegEx in an indented and spaced fashion. The whitespace characters still works inside character classes.", "Indented Input Option", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void llRegExLibrary_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void btnReplaceMode_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(@"You will be able to test a RegEx replacement expression. Remember that $0 represents the match and $N represents the Nth capture group.", "RegEx Replace Option", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnRegExLibrary_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("This would open the uri http://regexlib.com/ in your default browser.", "RegEx Library", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 Process.Start("http://regexlib.com/");
         }
 
-        private void llRegExCheatSheet_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void btnRegExCheatSheet_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("This would open the uri http://www.ilovejackdaniels.com/cheat-sheets/regular-expressions-cheat-sheet/ in your default browser.", "RegEx CheatSheet", MessageBoxButtons.OKCancel) == DialogResult.OK)
-                Process.Start("http://www.ilovejackdaniels.com/cheat-sheets/regular-expressions-cheat-sheet/");
+            if (MessageBox.Show("This would open the uri http://www.addedbytes.com/cheat-sheets/regular-expressions-cheat-sheet/ in your default browser.", "RegEx CheatSheet", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                Process.Start("http://www.addedbytes.com/cheat-sheets/regular-expressions-cheat-sheet/");
             
         }
 
-        #endregion
-
-        #region rtbText ContextMenuEvents
-
-        private void undoTSMenuItem_Click(object sender, EventArgs e)
+        private void btnAbout_Click(object sender, EventArgs e)
         {
-            rtbText.Undo();
-        }
-
-        private void redoTSMenuItem_Click(object sender, EventArgs e)
-        {
-            rtbText.Redo();
-        }
-
-        private void cutTSMenuItem_Click(object sender, EventArgs e)
-        {
-            rtbText.Cut();
-        }
-
-        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            rtbText.Copy();
-        }
-
-        private void pasteTSMenuItem_Click(object sender, EventArgs e)
-        {
-            rtbText.Paste();
-        }
-
-        private void deleteTSMenuItem_Click(object sender, EventArgs e)
-        {
-            // I had to use this approach because the rtb doen't have a Delection-Delete function.
-            SendKeys.Send("{DEL}"); // Delete key
-        }
-
-        private void findTSMenuItem_Click(object sender, EventArgs e)
-        {
-            string findString = Microsoft.VisualBasic.Interaction.InputBox("Insert text to find...", "Find Function", _lastFindString, -1, -1);
-
-            if (string.IsNullOrEmpty(findString)) return;
-            int position = rtbText.Find(findString, 0, RichTextBoxFinds.None);
-            if (position == -1)
-            {
-                MessageBox.Show("Text not found", "Find Function", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                rtbText.Select(position, findString.Length);
-                _lastFindString = findString;
-            }
-        }
-
-        private void findNextTSMenuItem_Click(object sender, EventArgs e)
-        {
-            string findString = _lastFindString;
-
-            if (string.IsNullOrEmpty(findString)) return;
-            int position = rtbText.Find(findString, rtbText.SelectionStart + rtbText.SelectionLength, RichTextBoxFinds.None);
-            if (position == -1)
-            {
-                MessageBox.Show("No more occurrences found", "Find Next Function", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                rtbText.Select(position, findString.Length);
-            }
-        }
-
-        private void selectAllTSMenuItem_Click(object sender, EventArgs e)
-        {
-            rtbText.SelectAll();
+            frmAbout af = new frmAbout();
+            af.ShowDialog();
+            af.Dispose();
         }
 
         #endregion

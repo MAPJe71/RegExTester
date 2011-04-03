@@ -38,7 +38,7 @@ namespace RegExTester
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAbout));
             this.llHomepage1 = new System.Windows.Forms.LinkLabel();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.llProject1 = new System.Windows.Forms.LinkLabel();
@@ -71,14 +71,14 @@ namespace RegExTester
             this.label1.TabIndex = 2;
             this.label1.Text = resources.GetString("label1.Text");
             // 
-            // label2
+            // lblTitle
             // 
-            this.label2.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(11, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(277, 32);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "RegEx Tester";
+            this.lblTitle.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Location = new System.Drawing.Point(11, 9);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(508, 32);
+            this.lblTitle.TabIndex = 0;
+            this.lblTitle.Text = "RegEx Tester";
             // 
             // label3
             // 
@@ -115,7 +115,7 @@ namespace RegExTester
             this.btnClose.Location = new System.Drawing.Point(223, 235);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
-            this.btnClose.TabIndex = 11;
+            this.btnClose.TabIndex = 0;
             this.btnClose.Text = "Close";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
@@ -134,7 +134,7 @@ namespace RegExTester
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(247, 20);
             this.label6.TabIndex = 8;
-            this.label6.Text = "Turbocharged by Pablo Osés (2008)";
+            this.label6.Text = "Turbocharged by Pablo Osés (2009)";
             this.label6.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // llProject2
@@ -199,7 +199,7 @@ namespace RegExTester
             this.Controls.Add(this.llProject1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.llHomepage1);
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -207,6 +207,7 @@ namespace RegExTester
             this.Name = "frmAbout";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "About";
+            this.Load += new System.EventHandler(this.frmAbout_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -216,7 +217,7 @@ namespace RegExTester
 
         private System.Windows.Forms.LinkLabel llHomepage1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.LinkLabel llProject1;
