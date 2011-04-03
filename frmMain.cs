@@ -34,8 +34,21 @@ namespace RegExTester
         /// <param name="e"></param>
         private void MainForm_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.F5 && !e.Control && !e.Alt && !e.Shift)
-                DoTest();
+            if (e.KeyCode == Keys.F5 && !e.Control && !e.Alt && !e.Shift && btnTest.Enabled)
+            {
+                if (rtbText.Focused)
+                {
+                    // Never do the test with the focus on the rtbText because the test makes selections inside it to make highligths
+                    // and when the focus is in there the performance of the test decreases a lot.
+                    btnTest.Focus();
+                    DoTest();
+                    rtbText.Focus();
+                }
+                else
+                {
+                    DoTest();
+                }
+            }
         }
 
         /// <summary>
@@ -173,8 +186,7 @@ namespace RegExTester
 
             // Reset RichTextBox
             rtbText.Select(rtbSelectionStart, rtbSelectionLength);
-            rtbText.SelectionColor = Color.Black;
-            
+
             // Show matching count
             sbpMatchCount.Text = "Match count: " + mc.Count.ToString();
 
@@ -210,16 +222,30 @@ namespace RegExTester
         {
             if (cbIndentedInput.Checked)
             {
+                //why is it that the textbox changes it's height by itself when i change it's multiline property? 
+                // I have to reset it in order to not mix up the splitter control.
+                int originalHeight = txtRegEx.Height;
+                txtRegEx.Multiline = true;
+                txtRegEx.Height = originalHeight;
+
                 txtRegEx.AcceptsTab = true;
                 txtRegEx.ScrollBars = ScrollBars.Vertical;
-                if (splitContainer.SplitterDistance == 90) splitContainer.SplitterDistance = 150;
+
+                splitContainer.IsSplitterFixed = false;
+                splitContainer.SplitterDistance = 150;
             }
             else
             {
+                int originalHeight = txtRegEx.Height;
+                txtRegEx.Multiline = false;
+                txtRegEx.Height = originalHeight;
+
                 txtRegEx.AcceptsTab = false;
                 txtRegEx.ScrollBars = ScrollBars.None;
-                splitContainer.SplitterDistance = 90;
                 txtRegEx.Text = stripIndentation(txtRegEx.Text);
+
+                splitContainer.SplitterDistance = 90;
+                splitContainer.IsSplitterFixed = true;
             }
         }
 
@@ -237,7 +263,7 @@ namespace RegExTester
 
         private void llCultureInvariant_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            MessageBox.Show("If you use the Ignore Case Option you should always also include (for safety) the Culture Invariant Option because (\"file\" == \"FILE\") is True for many cultures (e.g. en-US) but this is False on some of them (e.g. tr-TR Turkish). When you are making case-insentitive operations you should always keep this in mind.", "Culture Invariant Option", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("If you use the Ignore Case Option you should always keep in mind the Culture Invariant Option because (\"file\" == \"FILE\") is True for many cultures (e.g. en-US) but it's False on some of them (e.g. tr-TR Turkish). Turning On this option is generally safer.", "Culture Invariant Option", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void llMultiLine_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -257,7 +283,15 @@ namespace RegExTester
 
         private void llRegExLibrary_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("http://regexlib.com/");
+            if (MessageBox.Show("This would open the uri http://regexlib.com/ in your default browser.", "RegEx Library", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                Process.Start("http://regexlib.com/");
+        }
+
+        private void llRegExCheatSheet_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (MessageBox.Show("This would open the uri http://www.ilovejackdaniels.com/cheat-sheets/regular-expressions-cheat-sheet/ in your default browser.", "RegEx CheatSheet", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                Process.Start("http://www.ilovejackdaniels.com/cheat-sheets/regular-expressions-cheat-sheet/");
+            
         }
 
     }
