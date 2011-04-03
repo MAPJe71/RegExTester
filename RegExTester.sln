@@ -1,5 +1,5 @@
 Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual C# Express 2005
+# Visual Studio 2005
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegExTester", "RegExTester.csproj", "{33AA191A-9F36-49BE-8525-9CCF4C510334}"
 EndProject
 Global
@@ -15,14 +15,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(SourceCodeControl) = preSolution
-		SccNumberOfProjects = 2
-		SccLocalPath0 = .
-		CanCheckoutShared = false
-		SolutionUniqueID = {CCBD7C21-F7AF-4B95-9B87-E12B1E3131B0}
-		SccProjectUniqueName1 = RegExTester.csproj
-		SccLocalPath1 = .
-		CanCheckoutShared = false
 	EndGlobalSection
 EndGlobal

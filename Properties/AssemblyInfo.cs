@@ -6,12 +6,12 @@ using System.Runtime.CompilerServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 //
-[assembly: AssemblyTitle("RegExTester")]
+[assembly: AssemblyTitle("RegEx Tester")]
 [assembly: AssemblyDescription("Regular Expression Tester")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("RegExTester")]
-[assembly: AssemblyCopyright("2003 Davide Mauri")]
+[assembly: AssemblyProduct("RegEx Tester")]
+[assembly: AssemblyCopyright("2008 Pablo Osés")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]		
 
@@ -26,7 +26,7 @@ using System.Runtime.CompilerServices;
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
 
-[assembly: AssemblyVersion("1.0.0.3")]
+[assembly: AssemblyVersion("2.0.0.0")]
 
 //
 // In order to sign your assembly you must specify a key to use. Refer to the 
