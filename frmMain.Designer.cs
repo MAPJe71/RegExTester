@@ -31,10 +31,11 @@ namespace RegExTester
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            this.statusBar1 = new System.Windows.Forms.StatusBar();
-            this.sbpInfo = new System.Windows.Forms.StatusBarPanel();
-            this.sbpMatchCount = new System.Windows.Forms.StatusBarPanel();
+            this.statusBar = new System.Windows.Forms.StatusBar();
+            this.sbpStatus = new System.Windows.Forms.StatusBarPanel();
+            this.sbpContext = new System.Windows.Forms.StatusBarPanel();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.llRegExCheatSheet = new System.Windows.Forms.LinkLabel();
             this.llRegExLibrary = new System.Windows.Forms.LinkLabel();
@@ -55,46 +56,65 @@ namespace RegExTester
             this.lblRegEx = new System.Windows.Forms.Label();
             this.nestedSplitContainer = new System.Windows.Forms.SplitContainer();
             this.rtbText = new System.Windows.Forms.RichTextBox();
+            this.rtbTextContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.undoTSMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.redoTSMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.separator1TSMenuItem = new System.Windows.Forms.ToolStripSeparator();
+            this.cutTSMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pasteTSMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteTSMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.separator2TSMenuItem = new System.Windows.Forms.ToolStripSeparator();
+            this.findTSMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.findNextTSMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.separator3TSMenuItem = new System.Windows.Forms.ToolStripSeparator();
+            this.selectAllTSMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblText = new System.Windows.Forms.Label();
             this.lvResult = new System.Windows.Forms.ListView();
             this.chMatch = new System.Windows.Forms.ColumnHeader();
             this.chPosition = new System.Windows.Forms.ColumnHeader();
             this.chLenght = new System.Windows.Forms.ColumnHeader();
             this.lblResults = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.sbpInfo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sbpMatchCount)).BeginInit();
+            this.btnCopyContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.copyGeneric1TSMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyGeneric2TSMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyGeneric3TSMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            ((System.ComponentModel.ISupportInitialize)(this.sbpStatus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sbpContext)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
             this.splitContainer.SuspendLayout();
             this.nestedSplitContainer.Panel1.SuspendLayout();
             this.nestedSplitContainer.Panel2.SuspendLayout();
             this.nestedSplitContainer.SuspendLayout();
+            this.rtbTextContextMenuStrip.SuspendLayout();
+            this.btnCopyContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
-            // statusBar1
+            // statusBar
             // 
-            this.statusBar1.Location = new System.Drawing.Point(0, 435);
-            this.statusBar1.Name = "statusBar1";
-            this.statusBar1.Panels.AddRange(new System.Windows.Forms.StatusBarPanel[] {
-            this.sbpInfo,
-            this.sbpMatchCount});
-            this.statusBar1.ShowPanels = true;
-            this.statusBar1.Size = new System.Drawing.Size(765, 22);
-            this.statusBar1.TabIndex = 1;
-            this.statusBar1.Text = "statusBar1";
+            this.statusBar.Location = new System.Drawing.Point(0, 435);
+            this.statusBar.Name = "statusBar";
+            this.statusBar.Panels.AddRange(new System.Windows.Forms.StatusBarPanel[] {
+            this.sbpStatus,
+            this.sbpContext});
+            this.statusBar.ShowPanels = true;
+            this.statusBar.Size = new System.Drawing.Size(765, 22);
+            this.statusBar.TabIndex = 1;
+            this.statusBar.Text = "statusBar";
             // 
-            // sbpInfo
+            // sbpStatus
             // 
-            this.sbpInfo.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Spring;
-            this.sbpInfo.Name = "sbpInfo";
-            this.sbpInfo.Width = 668;
+            this.sbpStatus.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Spring;
+            this.sbpStatus.Name = "sbpStatus";
+            this.sbpStatus.Text = "Nothing searched yet.";
+            this.sbpStatus.Width = 739;
             // 
-            // sbpMatchCount
+            // sbpContext
             // 
-            this.sbpMatchCount.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
-            this.sbpMatchCount.Name = "sbpMatchCount";
-            this.sbpMatchCount.Text = "Match Count:";
-            this.sbpMatchCount.Width = 81;
+            this.sbpContext.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
+            this.sbpContext.Name = "sbpContext";
+            this.sbpContext.Width = 10;
             // 
             // splitContainer
             // 
@@ -141,7 +161,7 @@ namespace RegExTester
             this.llRegExCheatSheet.Location = new System.Drawing.Point(425, 5);
             this.llRegExCheatSheet.Name = "llRegExCheatSheet";
             this.llRegExCheatSheet.Size = new System.Drawing.Size(114, 13);
-            this.llRegExCheatSheet.TabIndex = 16;
+            this.llRegExCheatSheet.TabIndex = 14;
             this.llRegExCheatSheet.TabStop = true;
             this.llRegExCheatSheet.Text = "RegEx CheetSheet";
             this.llRegExCheatSheet.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llRegExCheatSheet_LinkClicked);
@@ -165,7 +185,7 @@ namespace RegExTester
             this.llIndentedInput.Location = new System.Drawing.Point(559, 56);
             this.llIndentedInput.Name = "llIndentedInput";
             this.llIndentedInput.Size = new System.Drawing.Size(13, 13);
-            this.llIndentedInput.TabIndex = 11;
+            this.llIndentedInput.TabIndex = 13;
             this.llIndentedInput.TabStop = true;
             this.llIndentedInput.Text = "?";
             this.llIndentedInput.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llIndentedInput_LinkClicked);
@@ -177,7 +197,7 @@ namespace RegExTester
             this.cbIndentedInput.Location = new System.Drawing.Point(454, 51);
             this.cbIndentedInput.Name = "cbIndentedInput";
             this.cbIndentedInput.Size = new System.Drawing.Size(107, 24);
-            this.cbIndentedInput.TabIndex = 10;
+            this.cbIndentedInput.TabIndex = 12;
             this.cbIndentedInput.Text = "Indented Input";
             this.cbIndentedInput.CheckedChanged += new System.EventHandler(this.cbIndentedInput_CheckedChanged);
             // 
@@ -187,7 +207,7 @@ namespace RegExTester
             this.btnCopy.Location = new System.Drawing.Point(588, 51);
             this.btnCopy.Name = "btnCopy";
             this.btnCopy.Size = new System.Drawing.Size(75, 23);
-            this.btnCopy.TabIndex = 12;
+            this.btnCopy.TabIndex = 3;
             this.btnCopy.Text = "Copy";
             this.btnCopy.UseVisualStyleBackColor = true;
             this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
@@ -198,7 +218,7 @@ namespace RegExTester
             this.btnTest.Location = new System.Drawing.Point(669, 51);
             this.btnTest.Name = "btnTest";
             this.btnTest.Size = new System.Drawing.Size(75, 23);
-            this.btnTest.TabIndex = 13;
+            this.btnTest.TabIndex = 2;
             this.btnTest.Text = "Test [F5]";
             this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
             // 
@@ -208,7 +228,7 @@ namespace RegExTester
             this.llAbout.Location = new System.Drawing.Point(638, 5);
             this.llAbout.Name = "llAbout";
             this.llAbout.Size = new System.Drawing.Size(120, 16);
-            this.llAbout.TabIndex = 14;
+            this.llAbout.TabIndex = 16;
             this.llAbout.TabStop = true;
             this.llAbout.Text = "About This Program";
             this.llAbout.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llAbout_LinkClicked);
@@ -222,7 +242,7 @@ namespace RegExTester
             this.cbCultureInvariant.Location = new System.Drawing.Point(128, 51);
             this.cbCultureInvariant.Name = "cbCultureInvariant";
             this.cbCultureInvariant.Size = new System.Drawing.Size(120, 24);
-            this.cbCultureInvariant.TabIndex = 4;
+            this.cbCultureInvariant.TabIndex = 6;
             this.cbCultureInvariant.Text = "Culture Invariant";
             // 
             // llCultureInvariant
@@ -232,7 +252,7 @@ namespace RegExTester
             this.llCultureInvariant.Location = new System.Drawing.Point(244, 56);
             this.llCultureInvariant.Name = "llCultureInvariant";
             this.llCultureInvariant.Size = new System.Drawing.Size(13, 13);
-            this.llCultureInvariant.TabIndex = 5;
+            this.llCultureInvariant.TabIndex = 7;
             this.llCultureInvariant.TabStop = true;
             this.llCultureInvariant.Text = "?";
             this.llCultureInvariant.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llCultureInvariant_LinkClicked);
@@ -244,7 +264,7 @@ namespace RegExTester
             this.llSingleLine.Location = new System.Drawing.Point(435, 56);
             this.llSingleLine.Name = "llSingleLine";
             this.llSingleLine.Size = new System.Drawing.Size(13, 13);
-            this.llSingleLine.TabIndex = 9;
+            this.llSingleLine.TabIndex = 11;
             this.llSingleLine.TabStop = true;
             this.llSingleLine.Text = "?";
             this.llSingleLine.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llSingleLine_LinkClicked);
@@ -256,7 +276,7 @@ namespace RegExTester
             this.llMultiLine.Location = new System.Drawing.Point(335, 56);
             this.llMultiLine.Name = "llMultiLine";
             this.llMultiLine.Size = new System.Drawing.Size(13, 13);
-            this.llMultiLine.TabIndex = 7;
+            this.llMultiLine.TabIndex = 9;
             this.llMultiLine.TabStop = true;
             this.llMultiLine.Text = "?";
             this.llMultiLine.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llMultiLine_LinkClicked);
@@ -268,7 +288,7 @@ namespace RegExTester
             this.llIgnoreCase.Location = new System.Drawing.Point(109, 56);
             this.llIgnoreCase.Name = "llIgnoreCase";
             this.llIgnoreCase.Size = new System.Drawing.Size(13, 13);
-            this.llIgnoreCase.TabIndex = 3;
+            this.llIgnoreCase.TabIndex = 5;
             this.llIgnoreCase.TabStop = true;
             this.llIgnoreCase.Text = "?";
             this.llIgnoreCase.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llIgnoreCase_LinkClicked);
@@ -282,7 +302,7 @@ namespace RegExTester
             this.cbSingleLine.Location = new System.Drawing.Point(354, 51);
             this.cbSingleLine.Name = "cbSingleLine";
             this.cbSingleLine.Size = new System.Drawing.Size(84, 24);
-            this.cbSingleLine.TabIndex = 8;
+            this.cbSingleLine.TabIndex = 10;
             this.cbSingleLine.Text = "Single Line";
             // 
             // cbMultiLine
@@ -294,7 +314,7 @@ namespace RegExTester
             this.cbMultiLine.Location = new System.Drawing.Point(263, 51);
             this.cbMultiLine.Name = "cbMultiLine";
             this.cbMultiLine.Size = new System.Drawing.Size(77, 24);
-            this.cbMultiLine.TabIndex = 6;
+            this.cbMultiLine.TabIndex = 8;
             this.cbMultiLine.Text = "Multi Line";
             // 
             // cbIgnoreCase
@@ -306,7 +326,7 @@ namespace RegExTester
             this.cbIgnoreCase.Location = new System.Drawing.Point(20, 51);
             this.cbIgnoreCase.Name = "cbIgnoreCase";
             this.cbIgnoreCase.Size = new System.Drawing.Size(95, 24);
-            this.cbIgnoreCase.TabIndex = 2;
+            this.cbIgnoreCase.TabIndex = 4;
             this.cbIgnoreCase.Text = "Ignore Case";
             // 
             // txtRegEx
@@ -358,6 +378,7 @@ namespace RegExTester
             this.rtbText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.rtbText.ContextMenuStrip = this.rtbTextContextMenuStrip;
             this.rtbText.HideSelection = false;
             this.rtbText.Location = new System.Drawing.Point(11, 28);
             this.rtbText.Name = "rtbText";
@@ -365,6 +386,103 @@ namespace RegExTester
             this.rtbText.TabIndex = 1;
             this.rtbText.Text = "";
             this.rtbText.WordWrap = false;
+            // 
+            // rtbTextContextMenuStrip
+            // 
+            this.rtbTextContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.undoTSMenuItem,
+            this.redoTSMenuItem,
+            this.separator1TSMenuItem,
+            this.cutTSMenuItem,
+            this.copyToolStripMenuItem,
+            this.pasteTSMenuItem,
+            this.deleteTSMenuItem,
+            this.separator2TSMenuItem,
+            this.findTSMenuItem,
+            this.findNextTSMenuItem,
+            this.separator3TSMenuItem,
+            this.selectAllTSMenuItem});
+            this.rtbTextContextMenuStrip.Name = "rtbTextContextMenuStrip";
+            this.rtbTextContextMenuStrip.ShowImageMargin = false;
+            this.rtbTextContextMenuStrip.Size = new System.Drawing.Size(107, 220);
+            // 
+            // undoTSMenuItem
+            // 
+            this.undoTSMenuItem.Name = "undoTSMenuItem";
+            this.undoTSMenuItem.Size = new System.Drawing.Size(106, 22);
+            this.undoTSMenuItem.Text = "&Undo";
+            this.undoTSMenuItem.Click += new System.EventHandler(this.undoTSMenuItem_Click);
+            // 
+            // redoTSMenuItem
+            // 
+            this.redoTSMenuItem.Name = "redoTSMenuItem";
+            this.redoTSMenuItem.Size = new System.Drawing.Size(106, 22);
+            this.redoTSMenuItem.Text = "&Redo";
+            this.redoTSMenuItem.Click += new System.EventHandler(this.redoTSMenuItem_Click);
+            // 
+            // separator1TSMenuItem
+            // 
+            this.separator1TSMenuItem.Name = "separator1TSMenuItem";
+            this.separator1TSMenuItem.Size = new System.Drawing.Size(103, 6);
+            // 
+            // cutTSMenuItem
+            // 
+            this.cutTSMenuItem.Name = "cutTSMenuItem";
+            this.cutTSMenuItem.Size = new System.Drawing.Size(106, 22);
+            this.cutTSMenuItem.Text = "Cu&t";
+            this.cutTSMenuItem.Click += new System.EventHandler(this.cutTSMenuItem_Click);
+            // 
+            // copyToolStripMenuItem
+            // 
+            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
+            this.copyToolStripMenuItem.Text = "&Copy";
+            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
+            // 
+            // pasteTSMenuItem
+            // 
+            this.pasteTSMenuItem.Name = "pasteTSMenuItem";
+            this.pasteTSMenuItem.Size = new System.Drawing.Size(106, 22);
+            this.pasteTSMenuItem.Text = "&Paste";
+            this.pasteTSMenuItem.Click += new System.EventHandler(this.pasteTSMenuItem_Click);
+            // 
+            // deleteTSMenuItem
+            // 
+            this.deleteTSMenuItem.Name = "deleteTSMenuItem";
+            this.deleteTSMenuItem.Size = new System.Drawing.Size(106, 22);
+            this.deleteTSMenuItem.Text = "&Delete";
+            this.deleteTSMenuItem.Click += new System.EventHandler(this.deleteTSMenuItem_Click);
+            // 
+            // separator2TSMenuItem
+            // 
+            this.separator2TSMenuItem.Name = "separator2TSMenuItem";
+            this.separator2TSMenuItem.Size = new System.Drawing.Size(103, 6);
+            // 
+            // findTSMenuItem
+            // 
+            this.findTSMenuItem.Name = "findTSMenuItem";
+            this.findTSMenuItem.Size = new System.Drawing.Size(106, 22);
+            this.findTSMenuItem.Text = "&Find...";
+            this.findTSMenuItem.Click += new System.EventHandler(this.findTSMenuItem_Click);
+            // 
+            // findNextTSMenuItem
+            // 
+            this.findNextTSMenuItem.Name = "findNextTSMenuItem";
+            this.findNextTSMenuItem.Size = new System.Drawing.Size(106, 22);
+            this.findNextTSMenuItem.Text = "Find &Next";
+            this.findNextTSMenuItem.Click += new System.EventHandler(this.findNextTSMenuItem_Click);
+            // 
+            // separator3TSMenuItem
+            // 
+            this.separator3TSMenuItem.Name = "separator3TSMenuItem";
+            this.separator3TSMenuItem.Size = new System.Drawing.Size(103, 6);
+            // 
+            // selectAllTSMenuItem
+            // 
+            this.selectAllTSMenuItem.Name = "selectAllTSMenuItem";
+            this.selectAllTSMenuItem.Size = new System.Drawing.Size(106, 22);
+            this.selectAllTSMenuItem.Text = "Select &All";
+            this.selectAllTSMenuItem.Click += new System.EventHandler(this.selectAllTSMenuItem_Click);
             // 
             // lblText
             // 
@@ -424,12 +542,46 @@ namespace RegExTester
             this.lblResults.TabIndex = 0;
             this.lblResults.Text = "Test Results";
             // 
+            // btnCopyContextMenuStrip
+            // 
+            this.btnCopyContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyGeneric1TSMenuItem,
+            this.copyGeneric2TSMenuItem,
+            this.copyGeneric3TSMenuItem});
+            this.btnCopyContextMenuStrip.Name = "btnCopyContextMenuStrip";
+            this.btnCopyContextMenuStrip.ShowImageMargin = false;
+            this.btnCopyContextMenuStrip.Size = new System.Drawing.Size(149, 70);
+            // 
+            // copyGeneric1TSMenuItem
+            // 
+            this.copyGeneric1TSMenuItem.Name = "copyGeneric1TSMenuItem";
+            this.copyGeneric1TSMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.copyGeneric1TSMenuItem.Tag = "cs";
+            this.copyGeneric1TSMenuItem.Text = "&C# escaped string";
+            this.copyGeneric1TSMenuItem.Click += new System.EventHandler(this.copyGenericTSMenuItem_Click);
+            // 
+            // copyGeneric2TSMenuItem
+            // 
+            this.copyGeneric2TSMenuItem.Name = "copyGeneric2TSMenuItem";
+            this.copyGeneric2TSMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.copyGeneric2TSMenuItem.Tag = "html";
+            this.copyGeneric2TSMenuItem.Text = "&HTML encoded";
+            this.copyGeneric2TSMenuItem.Click += new System.EventHandler(this.copyGenericTSMenuItem_Click);
+            // 
+            // copyGeneric3TSMenuItem
+            // 
+            this.copyGeneric3TSMenuItem.Name = "copyGeneric3TSMenuItem";
+            this.copyGeneric3TSMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.copyGeneric3TSMenuItem.Tag = "plain";
+            this.copyGeneric3TSMenuItem.Text = "&Plain text";
+            this.copyGeneric3TSMenuItem.Click += new System.EventHandler(this.copyGenericTSMenuItem_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(6, 14);
             this.ClientSize = new System.Drawing.Size(765, 457);
             this.Controls.Add(this.splitContainer);
-            this.Controls.Add(this.statusBar1);
+            this.Controls.Add(this.statusBar);
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
@@ -439,8 +591,8 @@ namespace RegExTester
             this.Text = "RegEx Tester";
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyUp);
             this.Load += new System.EventHandler(this.MainForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.sbpInfo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sbpMatchCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sbpStatus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sbpContext)).EndInit();
             this.splitContainer.Panel1.ResumeLayout(false);
             this.splitContainer.Panel1.PerformLayout();
             this.splitContainer.Panel2.ResumeLayout(false);
@@ -448,15 +600,17 @@ namespace RegExTester
             this.nestedSplitContainer.Panel1.ResumeLayout(false);
             this.nestedSplitContainer.Panel2.ResumeLayout(false);
             this.nestedSplitContainer.ResumeLayout(false);
+            this.rtbTextContextMenuStrip.ResumeLayout(false);
+            this.btnCopyContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
         #endregion
 
 
-        private System.Windows.Forms.StatusBar statusBar1;
-        private System.Windows.Forms.StatusBarPanel sbpMatchCount;
-        private System.Windows.Forms.StatusBarPanel sbpInfo;
+        private StatusBar statusBar;
+        private StatusBarPanel sbpStatus;
+        private StatusBarPanel sbpContext;
         private SplitContainer splitContainer;
         private SplitContainer nestedSplitContainer;
         private Button btnCopy;
@@ -484,6 +638,23 @@ namespace RegExTester
         private LinkLabel llRegExLibrary;
         private System.ComponentModel.IContainer components;
         private LinkLabel llRegExCheatSheet;
+        private ContextMenuStrip rtbTextContextMenuStrip;
+        private ToolStripMenuItem undoTSMenuItem;
+        private ToolStripSeparator separator1TSMenuItem;
+        private ToolStripMenuItem cutTSMenuItem;
+        private ToolStripMenuItem copyToolStripMenuItem;
+        private ToolStripMenuItem pasteTSMenuItem;
+        private ToolStripMenuItem deleteTSMenuItem;
+        private ToolStripSeparator separator2TSMenuItem;
+        private ToolStripMenuItem selectAllTSMenuItem;
+        private ToolStripMenuItem redoTSMenuItem;
+        private ToolStripMenuItem findTSMenuItem;
+        private ToolStripMenuItem findNextTSMenuItem;
+        private ToolStripSeparator separator3TSMenuItem;
+        private ContextMenuStrip btnCopyContextMenuStrip;
+        private ToolStripMenuItem copyGeneric1TSMenuItem;
+        private ToolStripMenuItem copyGeneric2TSMenuItem;
+        private ToolStripMenuItem copyGeneric3TSMenuItem;
 
     }
 }
