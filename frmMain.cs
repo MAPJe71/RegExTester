@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.IO;
 
 namespace RegExTester
 {
@@ -431,6 +432,61 @@ namespace RegExTester
         }
 
         #endregion
+
+		private void exportResultsLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			if (lvResult.Items.Count < 1)
+			{
+				MessageBox.Show("There are no results to export.", "Export failed", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return;
+			}
+
+			if (exportSaveFileDialog.ShowDialog() == DialogResult.OK)
+			{
+				StringBuilder sb = new StringBuilder();
+				bool firstColumn = true;
+
+				foreach (ColumnHeader columnHeader in lvResult.Columns)
+				{
+					if (!firstColumn)
+					{
+						sb.Append(",");
+					}
+
+					sb.AppendFormat("\"{0}\"", columnHeader.Text);
+
+					firstColumn = false;
+				}
+
+				sb.AppendLine();
+
+				firstColumn = true;
+
+				foreach (ListViewItem listViewItem in lvResult.Items)
+				{
+					foreach (ListViewItem.ListViewSubItem listViewSubItem in listViewItem.SubItems)
+					{
+						if (!firstColumn)
+						{
+							sb.Append(",");
+						}
+
+						sb.AppendFormat("\"{0}\"", listViewSubItem.Text);
+
+						firstColumn = false;
+					}
+
+					sb.AppendLine();
+
+					firstColumn = true;
+				}
+
+
+				File.WriteAllText(exportSaveFileDialog.FileName, sb.ToString());
+
+				sbpStatus.Text = "Export saved";
+			}
+		}
 
     }
 }
