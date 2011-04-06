@@ -31,721 +31,726 @@ namespace RegExTester
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-			this.statusBar = new System.Windows.Forms.StatusBar();
-			this.sbpStatus = new System.Windows.Forms.StatusBarPanel();
-			this.sbpMatches = new System.Windows.Forms.StatusBarPanel();
-			this.sbpExecutionTime = new System.Windows.Forms.StatusBarPanel();
-			this.sbpContext = new System.Windows.Forms.StatusBarPanel();
-			this.spctTopAndMiddle = new System.Windows.Forms.SplitContainer();
-			this.btnAbout = new System.Windows.Forms.Button();
-			this.btnRegExLibrary = new System.Windows.Forms.Button();
-			this.btnRegExCheatSheet = new System.Windows.Forms.Button();
-			this.btnReplaceMode = new System.Windows.Forms.Button();
-			this.btnIndentedInput = new System.Windows.Forms.Button();
-			this.btnSingleLine = new System.Windows.Forms.Button();
-			this.btnMultiLine = new System.Windows.Forms.Button();
-			this.btnCultureInvariant = new System.Windows.Forms.Button();
-			this.btnIgnoreCase = new System.Windows.Forms.Button();
-			this.cbReplaceMode = new System.Windows.Forms.CheckBox();
-			this.cbIndentedInput = new System.Windows.Forms.CheckBox();
-			this.btnCopy = new System.Windows.Forms.Button();
-			this.btnTest = new System.Windows.Forms.Button();
-			this.cbSingleLine = new System.Windows.Forms.CheckBox();
-			this.cbMultiLine = new System.Windows.Forms.CheckBox();
-			this.cbIgnoreCase = new System.Windows.Forms.CheckBox();
-			this.cbCultureInvariant = new System.Windows.Forms.CheckBox();
-			this.spctRegExAndRepEx = new System.Windows.Forms.SplitContainer();
-			this.lblRegEx = new System.Windows.Forms.Label();
-			this.txtRegEx = new System.Windows.Forms.TextBox();
-			this.lblRepEx = new System.Windows.Forms.Label();
-			this.txtRepEx = new System.Windows.Forms.TextBox();
-			this.spctMiddleAndBottom = new System.Windows.Forms.SplitContainer();
-			this.spctTextAndResults = new System.Windows.Forms.SplitContainer();
-			this.lblText = new System.Windows.Forms.Label();
-			this.lblResults = new System.Windows.Forms.Label();
-			this.exportResultsLinkLabel = new System.Windows.Forms.LinkLabel();
-			this.lvResult = new System.Windows.Forms.ListView();
-			this.chMatch = new System.Windows.Forms.ColumnHeader();
-			this.chPosition = new System.Windows.Forms.ColumnHeader();
-			this.chLength = new System.Windows.Forms.ColumnHeader();
-			this.lblResultsList = new System.Windows.Forms.Label();
-			this.cmsCopyButton = new System.Windows.Forms.ContextMenuStrip(this.components);
-			this.tsmiCopyGeneric0 = new System.Windows.Forms.ToolStripMenuItem();
-			this.tsmiCopyGeneric1 = new System.Windows.Forms.ToolStripMenuItem();
-			this.tsmiCopyGeneric2 = new System.Windows.Forms.ToolStripMenuItem();
-			this.tsmiCopyGeneric3 = new System.Windows.Forms.ToolStripMenuItem();
-			this.exportSaveFileDialog = new System.Windows.Forms.SaveFileDialog();
-			this.rtbText = new RegExTester.CustomRichTextBox();
-			this.rtbResults = new RegExTester.CustomRichTextBox();
-			((System.ComponentModel.ISupportInitialize)(this.sbpStatus)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.sbpMatches)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.sbpExecutionTime)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.sbpContext)).BeginInit();
-			this.spctTopAndMiddle.Panel1.SuspendLayout();
-			this.spctTopAndMiddle.Panel2.SuspendLayout();
-			this.spctTopAndMiddle.SuspendLayout();
-			this.spctRegExAndRepEx.Panel1.SuspendLayout();
-			this.spctRegExAndRepEx.Panel2.SuspendLayout();
-			this.spctRegExAndRepEx.SuspendLayout();
-			this.spctMiddleAndBottom.Panel1.SuspendLayout();
-			this.spctMiddleAndBottom.Panel2.SuspendLayout();
-			this.spctMiddleAndBottom.SuspendLayout();
-			this.spctTextAndResults.Panel1.SuspendLayout();
-			this.spctTextAndResults.Panel2.SuspendLayout();
-			this.spctTextAndResults.SuspendLayout();
-			this.cmsCopyButton.SuspendLayout();
-			this.SuspendLayout();
-			// 
-			// statusBar
-			// 
-			this.statusBar.Location = new System.Drawing.Point(0, 435);
-			this.statusBar.Name = "statusBar";
-			this.statusBar.Panels.AddRange(new System.Windows.Forms.StatusBarPanel[] {
-            this.sbpStatus,
-            this.sbpMatches,
-            this.sbpExecutionTime,
-            this.sbpContext});
-			this.statusBar.ShowPanels = true;
-			this.statusBar.Size = new System.Drawing.Size(592, 22);
-			this.statusBar.TabIndex = 1;
-			this.statusBar.Text = "statusBar";
-			// 
-			// sbpStatus
-			// 
-			this.sbpStatus.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Spring;
-			this.sbpStatus.Name = "sbpStatus";
-			this.sbpStatus.Text = "Nothing searched yet.";
-			this.sbpStatus.Width = 545;
-			// 
-			// sbpMatches
-			// 
-			this.sbpMatches.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
-			this.sbpMatches.MinWidth = 0;
-			this.sbpMatches.Name = "sbpMatches";
-			this.sbpMatches.Width = 10;
-			// 
-			// sbpExecutionTime
-			// 
-			this.sbpExecutionTime.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
-			this.sbpExecutionTime.MinWidth = 0;
-			this.sbpExecutionTime.Name = "sbpExecutionTime";
-			this.sbpExecutionTime.Width = 10;
-			// 
-			// sbpContext
-			// 
-			this.sbpContext.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
-			this.sbpContext.MinWidth = 0;
-			this.sbpContext.Name = "sbpContext";
-			this.sbpContext.Width = 10;
-			// 
-			// spctTopAndMiddle
-			// 
-			this.spctTopAndMiddle.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.spctTopAndMiddle.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.spctTopAndMiddle.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-			this.spctTopAndMiddle.IsSplitterFixed = true;
-			this.spctTopAndMiddle.Location = new System.Drawing.Point(0, 0);
-			this.spctTopAndMiddle.Name = "spctTopAndMiddle";
-			this.spctTopAndMiddle.Orientation = System.Windows.Forms.Orientation.Horizontal;
-			// 
-			// spctTopAndMiddle.Panel1
-			// 
-			this.spctTopAndMiddle.Panel1.Controls.Add(this.btnAbout);
-			this.spctTopAndMiddle.Panel1.Controls.Add(this.btnRegExLibrary);
-			this.spctTopAndMiddle.Panel1.Controls.Add(this.btnRegExCheatSheet);
-			this.spctTopAndMiddle.Panel1.Controls.Add(this.btnReplaceMode);
-			this.spctTopAndMiddle.Panel1.Controls.Add(this.btnIndentedInput);
-			this.spctTopAndMiddle.Panel1.Controls.Add(this.btnSingleLine);
-			this.spctTopAndMiddle.Panel1.Controls.Add(this.btnMultiLine);
-			this.spctTopAndMiddle.Panel1.Controls.Add(this.btnCultureInvariant);
-			this.spctTopAndMiddle.Panel1.Controls.Add(this.btnIgnoreCase);
-			this.spctTopAndMiddle.Panel1.Controls.Add(this.cbReplaceMode);
-			this.spctTopAndMiddle.Panel1.Controls.Add(this.cbIndentedInput);
-			this.spctTopAndMiddle.Panel1.Controls.Add(this.btnCopy);
-			this.spctTopAndMiddle.Panel1.Controls.Add(this.btnTest);
-			this.spctTopAndMiddle.Panel1.Controls.Add(this.cbSingleLine);
-			this.spctTopAndMiddle.Panel1.Controls.Add(this.cbMultiLine);
-			this.spctTopAndMiddle.Panel1.Controls.Add(this.cbIgnoreCase);
-			this.spctTopAndMiddle.Panel1.Controls.Add(this.cbCultureInvariant);
-			this.spctTopAndMiddle.Panel1.Controls.Add(this.spctRegExAndRepEx);
-			this.spctTopAndMiddle.Panel1MinSize = 100;
-			// 
-			// spctTopAndMiddle.Panel2
-			// 
-			this.spctTopAndMiddle.Panel2.Controls.Add(this.spctMiddleAndBottom);
-			this.spctTopAndMiddle.Size = new System.Drawing.Size(592, 435);
-			this.spctTopAndMiddle.SplitterDistance = 100;
-			this.spctTopAndMiddle.TabIndex = 0;
-			// 
-			// btnAbout
-			// 
-			this.btnAbout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnAbout.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
-			this.btnAbout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnAbout.ForeColor = System.Drawing.Color.Blue;
-			this.btnAbout.Location = new System.Drawing.Point(438, 1);
-			this.btnAbout.Name = "btnAbout";
-			this.btnAbout.Size = new System.Drawing.Size(137, 25);
-			this.btnAbout.TabIndex = 31;
-			this.btnAbout.Text = "About This Program";
-			this.btnAbout.UseVisualStyleBackColor = true;
-			this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
-			// 
-			// btnRegExLibrary
-			// 
-			this.btnRegExLibrary.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnRegExLibrary.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
-			this.btnRegExLibrary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnRegExLibrary.ForeColor = System.Drawing.Color.Blue;
-			this.btnRegExLibrary.Location = new System.Drawing.Point(328, 1);
-			this.btnRegExLibrary.Name = "btnRegExLibrary";
-			this.btnRegExLibrary.Size = new System.Drawing.Size(102, 25);
-			this.btnRegExLibrary.TabIndex = 30;
-			this.btnRegExLibrary.Text = "RegEx Library";
-			this.btnRegExLibrary.UseVisualStyleBackColor = true;
-			this.btnRegExLibrary.Click += new System.EventHandler(this.btnRegExLibrary_Click);
-			// 
-			// btnRegExCheatSheet
-			// 
-			this.btnRegExCheatSheet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnRegExCheatSheet.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
-			this.btnRegExCheatSheet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnRegExCheatSheet.ForeColor = System.Drawing.Color.Blue;
-			this.btnRegExCheatSheet.Location = new System.Drawing.Point(186, 1);
-			this.btnRegExCheatSheet.Name = "btnRegExCheatSheet";
-			this.btnRegExCheatSheet.Size = new System.Drawing.Size(127, 25);
-			this.btnRegExCheatSheet.TabIndex = 28;
-			this.btnRegExCheatSheet.Text = "RegEx CheatSheet";
-			this.btnRegExCheatSheet.UseVisualStyleBackColor = true;
-			this.btnRegExCheatSheet.Click += new System.EventHandler(this.btnRegExCheatSheet_Click);
-			// 
-			// btnReplaceMode
-			// 
-			this.btnReplaceMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.btnReplaceMode.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
-			this.btnReplaceMode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnReplaceMode.ForeColor = System.Drawing.Color.Blue;
-			this.btnReplaceMode.Location = new System.Drawing.Point(375, 73);
-			this.btnReplaceMode.Name = "btnReplaceMode";
-			this.btnReplaceMode.Size = new System.Drawing.Size(22, 22);
-			this.btnReplaceMode.TabIndex = 24;
-			this.btnReplaceMode.Text = "?";
-			this.btnReplaceMode.UseVisualStyleBackColor = true;
-			this.btnReplaceMode.Click += new System.EventHandler(this.btnReplaceMode_Click);
-			// 
-			// btnIndentedInput
-			// 
-			this.btnIndentedInput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.btnIndentedInput.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
-			this.btnIndentedInput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnIndentedInput.ForeColor = System.Drawing.Color.Blue;
-			this.btnIndentedInput.Location = new System.Drawing.Point(380, 51);
-			this.btnIndentedInput.Name = "btnIndentedInput";
-			this.btnIndentedInput.Size = new System.Drawing.Size(22, 22);
-			this.btnIndentedInput.TabIndex = 23;
-			this.btnIndentedInput.Text = "?";
-			this.btnIndentedInput.UseVisualStyleBackColor = true;
-			this.btnIndentedInput.Click += new System.EventHandler(this.btnIndentedInput_Click);
-			// 
-			// btnSingleLine
-			// 
-			this.btnSingleLine.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.btnSingleLine.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
-			this.btnSingleLine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnSingleLine.ForeColor = System.Drawing.Color.Blue;
-			this.btnSingleLine.Location = new System.Drawing.Point(243, 73);
-			this.btnSingleLine.Name = "btnSingleLine";
-			this.btnSingleLine.Size = new System.Drawing.Size(22, 22);
-			this.btnSingleLine.TabIndex = 22;
-			this.btnSingleLine.Text = "?";
-			this.btnSingleLine.UseVisualStyleBackColor = true;
-			this.btnSingleLine.Click += new System.EventHandler(this.btnSingleLine_Click);
-			// 
-			// btnMultiLine
-			// 
-			this.btnMultiLine.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.btnMultiLine.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
-			this.btnMultiLine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnMultiLine.ForeColor = System.Drawing.Color.Blue;
-			this.btnMultiLine.Location = new System.Drawing.Point(232, 51);
-			this.btnMultiLine.Name = "btnMultiLine";
-			this.btnMultiLine.Size = new System.Drawing.Size(22, 22);
-			this.btnMultiLine.TabIndex = 21;
-			this.btnMultiLine.Text = "?";
-			this.btnMultiLine.UseVisualStyleBackColor = true;
-			this.btnMultiLine.Click += new System.EventHandler(this.btnMultiLine_Click);
-			// 
-			// btnCultureInvariant
-			// 
-			this.btnCultureInvariant.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.btnCultureInvariant.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
-			this.btnCultureInvariant.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnCultureInvariant.ForeColor = System.Drawing.Color.Blue;
-			this.btnCultureInvariant.Location = new System.Drawing.Point(130, 73);
-			this.btnCultureInvariant.Name = "btnCultureInvariant";
-			this.btnCultureInvariant.Size = new System.Drawing.Size(22, 22);
-			this.btnCultureInvariant.TabIndex = 20;
-			this.btnCultureInvariant.Text = "?";
-			this.btnCultureInvariant.UseVisualStyleBackColor = true;
-			this.btnCultureInvariant.Click += new System.EventHandler(this.btnCultureInvariant_Click);
-			// 
-			// btnIgnoreCase
-			// 
-			this.btnIgnoreCase.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.btnIgnoreCase.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
-			this.btnIgnoreCase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnIgnoreCase.ForeColor = System.Drawing.Color.Blue;
-			this.btnIgnoreCase.Location = new System.Drawing.Point(102, 51);
-			this.btnIgnoreCase.Name = "btnIgnoreCase";
-			this.btnIgnoreCase.Size = new System.Drawing.Size(22, 22);
-			this.btnIgnoreCase.TabIndex = 19;
-			this.btnIgnoreCase.Text = "?";
-			this.btnIgnoreCase.UseVisualStyleBackColor = true;
-			this.btnIgnoreCase.Click += new System.EventHandler(this.btnIgnoreCase_Click);
-			// 
-			// cbReplaceMode
-			// 
-			this.cbReplaceMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.cbReplaceMode.CausesValidation = false;
-			this.cbReplaceMode.Checked = true;
-			this.cbReplaceMode.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.cbReplaceMode.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.cbReplaceMode.Location = new System.Drawing.Point(275, 73);
-			this.cbReplaceMode.Name = "cbReplaceMode";
-			this.cbReplaceMode.Size = new System.Drawing.Size(127, 22);
-			this.cbReplaceMode.TabIndex = 15;
-			this.cbReplaceMode.Text = "Replace mode";
-			this.cbReplaceMode.CheckedChanged += new System.EventHandler(this.cbReplaceMode_CheckedChanged);
-			// 
-			// cbIndentedInput
-			// 
-			this.cbIndentedInput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.cbIndentedInput.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.cbIndentedInput.Location = new System.Drawing.Point(275, 51);
-			this.cbIndentedInput.Name = "cbIndentedInput";
-			this.cbIndentedInput.Size = new System.Drawing.Size(127, 22);
-			this.cbIndentedInput.TabIndex = 13;
-			this.cbIndentedInput.Text = "Indented Input";
-			this.cbIndentedInput.CheckedChanged += new System.EventHandler(this.cbIndentedInput_CheckedChanged);
-			// 
-			// btnCopy
-			// 
-			this.btnCopy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnCopy.Location = new System.Drawing.Point(405, 56);
-			this.btnCopy.Name = "btnCopy";
-			this.btnCopy.Size = new System.Drawing.Size(75, 34);
-			this.btnCopy.TabIndex = 17;
-			this.btnCopy.Text = "Copy";
-			this.btnCopy.UseVisualStyleBackColor = true;
-			this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
-			// 
-			// btnTest
-			// 
-			this.btnTest.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnTest.Location = new System.Drawing.Point(486, 56);
-			this.btnTest.Name = "btnTest";
-			this.btnTest.Size = new System.Drawing.Size(92, 34);
-			this.btnTest.TabIndex = 18;
-			this.btnTest.Text = "Test [F5]";
-			this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
-			// 
-			// cbSingleLine
-			// 
-			this.cbSingleLine.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.cbSingleLine.Checked = true;
-			this.cbSingleLine.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.cbSingleLine.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.cbSingleLine.Location = new System.Drawing.Point(160, 73);
-			this.cbSingleLine.Name = "cbSingleLine";
-			this.cbSingleLine.Size = new System.Drawing.Size(109, 22);
-			this.cbSingleLine.TabIndex = 11;
-			this.cbSingleLine.Text = "Single Line";
-			// 
-			// cbMultiLine
-			// 
-			this.cbMultiLine.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.cbMultiLine.Checked = true;
-			this.cbMultiLine.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.cbMultiLine.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.cbMultiLine.Location = new System.Drawing.Point(160, 51);
-			this.cbMultiLine.Name = "cbMultiLine";
-			this.cbMultiLine.Size = new System.Drawing.Size(109, 22);
-			this.cbMultiLine.TabIndex = 9;
-			this.cbMultiLine.Text = "Multi Line";
-			// 
-			// cbIgnoreCase
-			// 
-			this.cbIgnoreCase.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.cbIgnoreCase.Checked = true;
-			this.cbIgnoreCase.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.cbIgnoreCase.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.cbIgnoreCase.Location = new System.Drawing.Point(11, 51);
-			this.cbIgnoreCase.Name = "cbIgnoreCase";
-			this.cbIgnoreCase.Size = new System.Drawing.Size(142, 22);
-			this.cbIgnoreCase.TabIndex = 5;
-			this.cbIgnoreCase.Text = "Ignore Case";
-			// 
-			// cbCultureInvariant
-			// 
-			this.cbCultureInvariant.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.cbCultureInvariant.Checked = true;
-			this.cbCultureInvariant.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.cbCultureInvariant.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.cbCultureInvariant.Location = new System.Drawing.Point(11, 73);
-			this.cbCultureInvariant.Name = "cbCultureInvariant";
-			this.cbCultureInvariant.Size = new System.Drawing.Size(142, 22);
-			this.cbCultureInvariant.TabIndex = 7;
-			this.cbCultureInvariant.Text = "Culture Invariant";
-			// 
-			// spctRegExAndRepEx
-			// 
-			this.spctRegExAndRepEx.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-						| System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
-			this.spctRegExAndRepEx.Location = new System.Drawing.Point(11, 5);
-			this.spctRegExAndRepEx.Name = "spctRegExAndRepEx";
-			// 
-			// spctRegExAndRepEx.Panel1
-			// 
-			this.spctRegExAndRepEx.Panel1.Controls.Add(this.lblRegEx);
-			this.spctRegExAndRepEx.Panel1.Controls.Add(this.txtRegEx);
-			// 
-			// spctRegExAndRepEx.Panel2
-			// 
-			this.spctRegExAndRepEx.Panel2.Controls.Add(this.lblRepEx);
-			this.spctRegExAndRepEx.Panel2.Controls.Add(this.txtRepEx);
-			this.spctRegExAndRepEx.Size = new System.Drawing.Size(567, 42);
-			this.spctRegExAndRepEx.SplitterDistance = 283;
-			this.spctRegExAndRepEx.TabIndex = 4;
-			// 
-			// lblRegEx
-			// 
-			this.lblRegEx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
-			this.lblRegEx.Location = new System.Drawing.Point(0, 3);
-			this.lblRegEx.Name = "lblRegEx";
-			this.lblRegEx.Size = new System.Drawing.Size(283, 16);
-			this.lblRegEx.TabIndex = 1;
-			this.lblRegEx.Text = "Regular Expression";
-			// 
-			// txtRegEx
-			// 
-			this.txtRegEx.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-						| System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
-			this.txtRegEx.HideSelection = false;
-			this.txtRegEx.Location = new System.Drawing.Point(0, 21);
-			this.txtRegEx.Name = "txtRegEx";
-			this.txtRegEx.Size = new System.Drawing.Size(283, 21);
-			this.txtRegEx.TabIndex = 0;
-			// 
-			// lblRepEx
-			// 
-			this.lblRepEx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
-			this.lblRepEx.Location = new System.Drawing.Point(0, 3);
-			this.lblRepEx.Name = "lblRepEx";
-			this.lblRepEx.Size = new System.Drawing.Size(284, 16);
-			this.lblRepEx.TabIndex = 2;
-			this.lblRepEx.Text = "Replacement Expression";
-			// 
-			// txtRepEx
-			// 
-			this.txtRepEx.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-						| System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
-			this.txtRepEx.HideSelection = false;
-			this.txtRepEx.Location = new System.Drawing.Point(0, 21);
-			this.txtRepEx.Name = "txtRepEx";
-			this.txtRepEx.Size = new System.Drawing.Size(280, 21);
-			this.txtRepEx.TabIndex = 0;
-			// 
-			// spctMiddleAndBottom
-			// 
-			this.spctMiddleAndBottom.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.spctMiddleAndBottom.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.spctMiddleAndBottom.Location = new System.Drawing.Point(0, 0);
-			this.spctMiddleAndBottom.Name = "spctMiddleAndBottom";
-			this.spctMiddleAndBottom.Orientation = System.Windows.Forms.Orientation.Horizontal;
-			// 
-			// spctMiddleAndBottom.Panel1
-			// 
-			this.spctMiddleAndBottom.Panel1.Controls.Add(this.spctTextAndResults);
-			this.spctMiddleAndBottom.Panel1MinSize = 61;
-			// 
-			// spctMiddleAndBottom.Panel2
-			// 
-			this.spctMiddleAndBottom.Panel2.Controls.Add(this.exportResultsLinkLabel);
-			this.spctMiddleAndBottom.Panel2.Controls.Add(this.lvResult);
-			this.spctMiddleAndBottom.Panel2.Controls.Add(this.lblResultsList);
-			this.spctMiddleAndBottom.Panel2MinSize = 89;
-			this.spctMiddleAndBottom.Size = new System.Drawing.Size(592, 331);
-			this.spctMiddleAndBottom.SplitterDistance = 191;
-			this.spctMiddleAndBottom.TabIndex = 0;
-			// 
-			// spctTextAndResults
-			// 
-			this.spctTextAndResults.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-						| System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
-			this.spctTextAndResults.Location = new System.Drawing.Point(11, 9);
-			this.spctTextAndResults.Name = "spctTextAndResults";
-			// 
-			// spctTextAndResults.Panel1
-			// 
-			this.spctTextAndResults.Panel1.Controls.Add(this.lblText);
-			this.spctTextAndResults.Panel1.Controls.Add(this.rtbText);
-			// 
-			// spctTextAndResults.Panel2
-			// 
-			this.spctTextAndResults.Panel2.Controls.Add(this.lblResults);
-			this.spctTextAndResults.Panel2.Controls.Add(this.rtbResults);
-			this.spctTextAndResults.Size = new System.Drawing.Size(567, 166);
-			this.spctTextAndResults.SplitterDistance = 283;
-			this.spctTextAndResults.TabIndex = 1;
-			// 
-			// lblText
-			// 
-			this.lblText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
-			this.lblText.Location = new System.Drawing.Point(-3, 0);
-			this.lblText.Name = "lblText";
-			this.lblText.Size = new System.Drawing.Size(286, 16);
-			this.lblText.TabIndex = 1;
-			this.lblText.Text = "Test Text";
-			// 
-			// lblResults
-			// 
-			this.lblResults.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
-			this.lblResults.Location = new System.Drawing.Point(-3, 0);
-			this.lblResults.Name = "lblResults";
-			this.lblResults.Size = new System.Drawing.Size(287, 16);
-			this.lblResults.TabIndex = 2;
-			this.lblResults.Text = "Test Results";
-			// 
-			// exportResultsLinkLabel
-			// 
-			this.exportResultsLinkLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.exportResultsLinkLabel.AutoSize = true;
-			this.exportResultsLinkLabel.Location = new System.Drawing.Point(454, 9);
-			this.exportResultsLinkLabel.Name = "exportResultsLinkLabel";
-			this.exportResultsLinkLabel.Size = new System.Drawing.Size(128, 13);
-			this.exportResultsLinkLabel.TabIndex = 2;
-			this.exportResultsLinkLabel.TabStop = true;
-			this.exportResultsLinkLabel.Text = "Export Results (CSV)";
-			this.exportResultsLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.exportResultsLinkLabel_LinkClicked);
-			// 
-			// lvResult
-			// 
-			this.lvResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-						| System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
-			this.lvResult.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.chMatch,
-            this.chPosition,
-            this.chLength});
-			this.lvResult.FullRowSelect = true;
-			this.lvResult.GridLines = true;
-			this.lvResult.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-			this.lvResult.HideSelection = false;
-			this.lvResult.Location = new System.Drawing.Point(11, 27);
-			this.lvResult.MultiSelect = false;
-			this.lvResult.Name = "lvResult";
-			this.lvResult.Size = new System.Drawing.Size(567, 91);
-			this.lvResult.TabIndex = 1;
-			this.lvResult.UseCompatibleStateImageBehavior = false;
-			this.lvResult.View = System.Windows.Forms.View.Details;
-			this.lvResult.SelectedIndexChanged += new System.EventHandler(this.lvResult_SelectedIndexChanged);
-			// 
-			// chMatch
-			// 
-			this.chMatch.Text = "Match";
-			this.chMatch.Width = 350;
-			// 
-			// chPosition
-			// 
-			this.chPosition.Text = "Position";
-			// 
-			// chLength
-			// 
-			this.chLength.Text = "Length";
-			// 
-			// lblResultsList
-			// 
-			this.lblResultsList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
-			this.lblResultsList.Location = new System.Drawing.Point(8, 9);
-			this.lblResultsList.Name = "lblResultsList";
-			this.lblResultsList.Size = new System.Drawing.Size(570, 15);
-			this.lblResultsList.TabIndex = 0;
-			this.lblResultsList.Text = "Test Results";
-			// 
-			// cmsCopyButton
-			// 
-			this.cmsCopyButton.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiCopyGeneric0,
-            this.tsmiCopyGeneric1,
-            this.tsmiCopyGeneric2,
-            this.tsmiCopyGeneric3});
-			this.cmsCopyButton.Name = "btnCopyContextMenuStrip";
-			this.cmsCopyButton.Size = new System.Drawing.Size(174, 92);
-			// 
-			// tsmiCopyGeneric0
-			// 
-			this.tsmiCopyGeneric0.Image = global::RegExTester.Properties.Resources.CSharpSnippet;
-			this.tsmiCopyGeneric0.Name = "tsmiCopyGeneric0";
-			this.tsmiCopyGeneric0.Size = new System.Drawing.Size(173, 22);
-			this.tsmiCopyGeneric0.Tag = "csharp snippet";
-			this.tsmiCopyGeneric0.Text = "C# code &snippet";
-			this.tsmiCopyGeneric0.Click += new System.EventHandler(this.tsmiCopyGeneric_Click);
-			// 
-			// tsmiCopyGeneric1
-			// 
-			this.tsmiCopyGeneric1.Image = global::RegExTester.Properties.Resources.CSharp;
-			this.tsmiCopyGeneric1.Name = "tsmiCopyGeneric1";
-			this.tsmiCopyGeneric1.Size = new System.Drawing.Size(173, 22);
-			this.tsmiCopyGeneric1.Tag = "csharp";
-			this.tsmiCopyGeneric1.Text = "&C# escaped string";
-			this.tsmiCopyGeneric1.Click += new System.EventHandler(this.tsmiCopyGeneric_Click);
-			// 
-			// tsmiCopyGeneric2
-			// 
-			this.tsmiCopyGeneric2.Image = global::RegExTester.Properties.Resources.Html;
-			this.tsmiCopyGeneric2.Name = "tsmiCopyGeneric2";
-			this.tsmiCopyGeneric2.Size = new System.Drawing.Size(173, 22);
-			this.tsmiCopyGeneric2.Tag = "html";
-			this.tsmiCopyGeneric2.Text = "&HTML encoded";
-			this.tsmiCopyGeneric2.Click += new System.EventHandler(this.tsmiCopyGeneric_Click);
-			// 
-			// tsmiCopyGeneric3
-			// 
-			this.tsmiCopyGeneric3.Image = global::RegExTester.Properties.Resources.Plain;
-			this.tsmiCopyGeneric3.Name = "tsmiCopyGeneric3";
-			this.tsmiCopyGeneric3.Size = new System.Drawing.Size(173, 22);
-			this.tsmiCopyGeneric3.Tag = "plain";
-			this.tsmiCopyGeneric3.Text = "&Plain text";
-			this.tsmiCopyGeneric3.Click += new System.EventHandler(this.tsmiCopyGeneric_Click);
-			// 
-			// exportSaveFileDialog
-			// 
-			this.exportSaveFileDialog.DefaultExt = "csv";
-			this.exportSaveFileDialog.Filter = "Comma Separated Values|*.csv|All files|*.*";
-			// 
-			// rtbText
-			// 
-			this.rtbText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-						| System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
-			this.rtbText.HideSelection = false;
-			this.rtbText.Location = new System.Drawing.Point(0, 19);
-			this.rtbText.Name = "rtbText";
-			this.rtbText.Size = new System.Drawing.Size(283, 147);
-			this.rtbText.TabIndex = 0;
-			this.rtbText.Text = "";
-			// 
-			// rtbResults
-			// 
-			this.rtbResults.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-						| System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
-			this.rtbResults.HideSelection = false;
-			this.rtbResults.Location = new System.Drawing.Point(0, 19);
-			this.rtbResults.Name = "rtbResults";
-			this.rtbResults.Size = new System.Drawing.Size(280, 147);
-			this.rtbResults.TabIndex = 0;
-			this.rtbResults.Text = "";
-			// 
-			// frmMain
-			// 
-			this.AutoScaleBaseSize = new System.Drawing.Size(6, 14);
-			this.ClientSize = new System.Drawing.Size(592, 457);
-			this.Controls.Add(this.spctTopAndMiddle);
-			this.Controls.Add(this.statusBar);
-			this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-			this.KeyPreview = true;
-			this.MinimumSize = new System.Drawing.Size(600, 390);
-			this.Name = "frmMain";
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "RegEx Tester";
-			this.Load += new System.EventHandler(this.MainForm_Load);
-			this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyUp);
-			((System.ComponentModel.ISupportInitialize)(this.sbpStatus)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.sbpMatches)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.sbpExecutionTime)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.sbpContext)).EndInit();
-			this.spctTopAndMiddle.Panel1.ResumeLayout(false);
-			this.spctTopAndMiddle.Panel2.ResumeLayout(false);
-			this.spctTopAndMiddle.ResumeLayout(false);
-			this.spctRegExAndRepEx.Panel1.ResumeLayout(false);
-			this.spctRegExAndRepEx.Panel1.PerformLayout();
-			this.spctRegExAndRepEx.Panel2.ResumeLayout(false);
-			this.spctRegExAndRepEx.Panel2.PerformLayout();
-			this.spctRegExAndRepEx.ResumeLayout(false);
-			this.spctMiddleAndBottom.Panel1.ResumeLayout(false);
-			this.spctMiddleAndBottom.Panel2.ResumeLayout(false);
-			this.spctMiddleAndBottom.Panel2.PerformLayout();
-			this.spctMiddleAndBottom.ResumeLayout(false);
-			this.spctTextAndResults.Panel1.ResumeLayout(false);
-			this.spctTextAndResults.Panel2.ResumeLayout(false);
-			this.spctTextAndResults.ResumeLayout(false);
-			this.cmsCopyButton.ResumeLayout(false);
-			this.ResumeLayout(false);
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
+            this.statusBar = new System.Windows.Forms.StatusBar();
+            this.statusStatusBarPanel = new System.Windows.Forms.StatusBarPanel();
+            this.matchesStatusBarPanel = new System.Windows.Forms.StatusBarPanel();
+            this.executionTimeStatusBarPanel = new System.Windows.Forms.StatusBarPanel();
+            this.contextStatusBarPanel = new System.Windows.Forms.StatusBarPanel();
+            this.topAndMiddleSplitContainer = new System.Windows.Forms.SplitContainer();
+            this.aboutButton = new System.Windows.Forms.Button();
+            this.regExLibraryButton = new System.Windows.Forms.Button();
+            this.regExCheatSheetButton = new System.Windows.Forms.Button();
+            this.replaceModeButton = new System.Windows.Forms.Button();
+            this.indentedInputButton = new System.Windows.Forms.Button();
+            this.singleLineButton = new System.Windows.Forms.Button();
+            this.multiLineButton = new System.Windows.Forms.Button();
+            this.cultureInvariantButton = new System.Windows.Forms.Button();
+            this.ignoreCaseButton = new System.Windows.Forms.Button();
+            this.replaceModeCheckBox = new System.Windows.Forms.CheckBox();
+            this.indentedInputCheckBox = new System.Windows.Forms.CheckBox();
+            this.copyButton = new System.Windows.Forms.Button();
+            this.testButton = new System.Windows.Forms.Button();
+            this.singleLineCheckBox = new System.Windows.Forms.CheckBox();
+            this.multiLineCheckBox = new System.Windows.Forms.CheckBox();
+            this.ignoreCaseCheckBox = new System.Windows.Forms.CheckBox();
+            this.cultureInvariantCheckBox = new System.Windows.Forms.CheckBox();
+            this.regExAndRepExSplitContainer = new System.Windows.Forms.SplitContainer();
+            this.regExLabel = new System.Windows.Forms.Label();
+            this.regExTextBox = new System.Windows.Forms.TextBox();
+            this.repExLabel = new System.Windows.Forms.Label();
+            this.repExTextBox = new System.Windows.Forms.TextBox();
+            this.middleAndBottomSplitContainer = new System.Windows.Forms.SplitContainer();
+            this.textAndResultsSplitContainer = new System.Windows.Forms.SplitContainer();
+            this.textLabel = new System.Windows.Forms.Label();
+            this.textRichTextBox = new RegExTester.CustomRichTextBox();
+            this.resultsLabel = new System.Windows.Forms.Label();
+            this.resultsRichTextBox = new RegExTester.CustomRichTextBox();
+            this.exportResultsButton = new System.Windows.Forms.Button();
+            this.resultListView = new System.Windows.Forms.ListView();
+            this.matchColumnHeader = new System.Windows.Forms.ColumnHeader();
+            this.positionColumnHeader = new System.Windows.Forms.ColumnHeader();
+            this.lengthColumnHeader = new System.Windows.Forms.ColumnHeader();
+            this.resultsListLabel = new System.Windows.Forms.Label();
+            this.copyButtonContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.copyGeneric0MenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyGeneric1MenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyGeneric2MenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyGeneric3MenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportSaveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            ((System.ComponentModel.ISupportInitialize)(this.statusStatusBarPanel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.matchesStatusBarPanel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.executionTimeStatusBarPanel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.contextStatusBarPanel)).BeginInit();
+            this.topAndMiddleSplitContainer.Panel1.SuspendLayout();
+            this.topAndMiddleSplitContainer.Panel2.SuspendLayout();
+            this.topAndMiddleSplitContainer.SuspendLayout();
+            this.regExAndRepExSplitContainer.Panel1.SuspendLayout();
+            this.regExAndRepExSplitContainer.Panel2.SuspendLayout();
+            this.regExAndRepExSplitContainer.SuspendLayout();
+            this.middleAndBottomSplitContainer.Panel1.SuspendLayout();
+            this.middleAndBottomSplitContainer.Panel2.SuspendLayout();
+            this.middleAndBottomSplitContainer.SuspendLayout();
+            this.textAndResultsSplitContainer.Panel1.SuspendLayout();
+            this.textAndResultsSplitContainer.Panel2.SuspendLayout();
+            this.textAndResultsSplitContainer.SuspendLayout();
+            this.copyButtonContextMenu.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // statusBar
+            // 
+            this.statusBar.Location = new System.Drawing.Point(0, 435);
+            this.statusBar.Name = "statusBar";
+            this.statusBar.Panels.AddRange(new System.Windows.Forms.StatusBarPanel[] {
+            this.statusStatusBarPanel,
+            this.matchesStatusBarPanel,
+            this.executionTimeStatusBarPanel,
+            this.contextStatusBarPanel});
+            this.statusBar.ShowPanels = true;
+            this.statusBar.Size = new System.Drawing.Size(592, 22);
+            this.statusBar.TabIndex = 1;
+            this.statusBar.Text = "statusBar";
+            // 
+            // statusStatusBarPanel
+            // 
+            this.statusStatusBarPanel.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Spring;
+            this.statusStatusBarPanel.Name = "sbpStatus";
+            this.statusStatusBarPanel.Text = "Nothing searched yet.";
+            this.statusStatusBarPanel.Width = 546;
+            // 
+            // matchesStatusBarPanel
+            // 
+            this.matchesStatusBarPanel.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
+            this.matchesStatusBarPanel.MinWidth = 0;
+            this.matchesStatusBarPanel.Name = "sbpMatches";
+            this.matchesStatusBarPanel.Width = 10;
+            // 
+            // executionTimeStatusBarPanel
+            // 
+            this.executionTimeStatusBarPanel.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
+            this.executionTimeStatusBarPanel.MinWidth = 0;
+            this.executionTimeStatusBarPanel.Name = "sbpExecutionTime";
+            this.executionTimeStatusBarPanel.Width = 10;
+            // 
+            // contextStatusBarPanel
+            // 
+            this.contextStatusBarPanel.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
+            this.contextStatusBarPanel.MinWidth = 0;
+            this.contextStatusBarPanel.Name = "sbpContext";
+            this.contextStatusBarPanel.Width = 10;
+            // 
+            // topAndMiddleSplitContainer
+            // 
+            this.topAndMiddleSplitContainer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.topAndMiddleSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.topAndMiddleSplitContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.topAndMiddleSplitContainer.IsSplitterFixed = true;
+            this.topAndMiddleSplitContainer.Location = new System.Drawing.Point(0, 0);
+            this.topAndMiddleSplitContainer.Name = "topAndMiddleSplitContainer";
+            this.topAndMiddleSplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // topAndMiddleSplitContainer.Panel1
+            // 
+            this.topAndMiddleSplitContainer.Panel1.Controls.Add(this.aboutButton);
+            this.topAndMiddleSplitContainer.Panel1.Controls.Add(this.regExLibraryButton);
+            this.topAndMiddleSplitContainer.Panel1.Controls.Add(this.regExCheatSheetButton);
+            this.topAndMiddleSplitContainer.Panel1.Controls.Add(this.replaceModeButton);
+            this.topAndMiddleSplitContainer.Panel1.Controls.Add(this.indentedInputButton);
+            this.topAndMiddleSplitContainer.Panel1.Controls.Add(this.singleLineButton);
+            this.topAndMiddleSplitContainer.Panel1.Controls.Add(this.multiLineButton);
+            this.topAndMiddleSplitContainer.Panel1.Controls.Add(this.cultureInvariantButton);
+            this.topAndMiddleSplitContainer.Panel1.Controls.Add(this.ignoreCaseButton);
+            this.topAndMiddleSplitContainer.Panel1.Controls.Add(this.replaceModeCheckBox);
+            this.topAndMiddleSplitContainer.Panel1.Controls.Add(this.indentedInputCheckBox);
+            this.topAndMiddleSplitContainer.Panel1.Controls.Add(this.copyButton);
+            this.topAndMiddleSplitContainer.Panel1.Controls.Add(this.testButton);
+            this.topAndMiddleSplitContainer.Panel1.Controls.Add(this.singleLineCheckBox);
+            this.topAndMiddleSplitContainer.Panel1.Controls.Add(this.multiLineCheckBox);
+            this.topAndMiddleSplitContainer.Panel1.Controls.Add(this.ignoreCaseCheckBox);
+            this.topAndMiddleSplitContainer.Panel1.Controls.Add(this.cultureInvariantCheckBox);
+            this.topAndMiddleSplitContainer.Panel1.Controls.Add(this.regExAndRepExSplitContainer);
+            this.topAndMiddleSplitContainer.Panel1MinSize = 100;
+            // 
+            // topAndMiddleSplitContainer.Panel2
+            // 
+            this.topAndMiddleSplitContainer.Panel2.Controls.Add(this.middleAndBottomSplitContainer);
+            this.topAndMiddleSplitContainer.Size = new System.Drawing.Size(592, 435);
+            this.topAndMiddleSplitContainer.SplitterDistance = 100;
+            this.topAndMiddleSplitContainer.TabIndex = 0;
+            // 
+            // aboutButton
+            // 
+            this.aboutButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.aboutButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.aboutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.aboutButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.aboutButton.ForeColor = System.Drawing.Color.Blue;
+            this.aboutButton.Location = new System.Drawing.Point(438, 1);
+            this.aboutButton.Name = "aboutButton";
+            this.aboutButton.Size = new System.Drawing.Size(137, 25);
+            this.aboutButton.TabIndex = 31;
+            this.aboutButton.Text = "About This Program";
+            this.aboutButton.UseVisualStyleBackColor = true;
+            this.aboutButton.Click += new System.EventHandler(this.aboutButton_Click);
+            // 
+            // regExLibraryButton
+            // 
+            this.regExLibraryButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.regExLibraryButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.regExLibraryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.regExLibraryButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.regExLibraryButton.ForeColor = System.Drawing.Color.Blue;
+            this.regExLibraryButton.Location = new System.Drawing.Point(328, 1);
+            this.regExLibraryButton.Name = "regExLibraryButton";
+            this.regExLibraryButton.Size = new System.Drawing.Size(102, 25);
+            this.regExLibraryButton.TabIndex = 30;
+            this.regExLibraryButton.Text = "RegEx Library";
+            this.regExLibraryButton.UseVisualStyleBackColor = true;
+            this.regExLibraryButton.Click += new System.EventHandler(this.regExLibraryButton_Click);
+            // 
+            // regExCheatSheetButton
+            // 
+            this.regExCheatSheetButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.regExCheatSheetButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.regExCheatSheetButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.regExCheatSheetButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.regExCheatSheetButton.ForeColor = System.Drawing.Color.Blue;
+            this.regExCheatSheetButton.Location = new System.Drawing.Point(186, 1);
+            this.regExCheatSheetButton.Name = "regExCheatSheetButton";
+            this.regExCheatSheetButton.Size = new System.Drawing.Size(127, 25);
+            this.regExCheatSheetButton.TabIndex = 28;
+            this.regExCheatSheetButton.Text = "RegEx CheatSheet";
+            this.regExCheatSheetButton.UseVisualStyleBackColor = true;
+            this.regExCheatSheetButton.Click += new System.EventHandler(this.regExCheatSheetButton_Click);
+            // 
+            // replaceModeButton
+            // 
+            this.replaceModeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.replaceModeButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.replaceModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.replaceModeButton.ForeColor = System.Drawing.Color.Blue;
+            this.replaceModeButton.Location = new System.Drawing.Point(375, 73);
+            this.replaceModeButton.Name = "replaceModeButton";
+            this.replaceModeButton.Size = new System.Drawing.Size(22, 22);
+            this.replaceModeButton.TabIndex = 24;
+            this.replaceModeButton.Text = "?";
+            this.replaceModeButton.UseVisualStyleBackColor = true;
+            this.replaceModeButton.Click += new System.EventHandler(this.replaceModeButton_Click);
+            // 
+            // indentedInputButton
+            // 
+            this.indentedInputButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.indentedInputButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.indentedInputButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.indentedInputButton.ForeColor = System.Drawing.Color.Blue;
+            this.indentedInputButton.Location = new System.Drawing.Point(380, 51);
+            this.indentedInputButton.Name = "indentedInputButton";
+            this.indentedInputButton.Size = new System.Drawing.Size(22, 22);
+            this.indentedInputButton.TabIndex = 23;
+            this.indentedInputButton.Text = "?";
+            this.indentedInputButton.UseVisualStyleBackColor = true;
+            this.indentedInputButton.Click += new System.EventHandler(this.indentedInputButton_Click);
+            // 
+            // singleLineButton
+            // 
+            this.singleLineButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.singleLineButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.singleLineButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.singleLineButton.ForeColor = System.Drawing.Color.Blue;
+            this.singleLineButton.Location = new System.Drawing.Point(243, 73);
+            this.singleLineButton.Name = "singleLineButton";
+            this.singleLineButton.Size = new System.Drawing.Size(22, 22);
+            this.singleLineButton.TabIndex = 22;
+            this.singleLineButton.Text = "?";
+            this.singleLineButton.UseVisualStyleBackColor = true;
+            this.singleLineButton.Click += new System.EventHandler(this.singleLineButton_Click);
+            // 
+            // multiLineButton
+            // 
+            this.multiLineButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.multiLineButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.multiLineButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.multiLineButton.ForeColor = System.Drawing.Color.Blue;
+            this.multiLineButton.Location = new System.Drawing.Point(232, 51);
+            this.multiLineButton.Name = "multiLineButton";
+            this.multiLineButton.Size = new System.Drawing.Size(22, 22);
+            this.multiLineButton.TabIndex = 21;
+            this.multiLineButton.Text = "?";
+            this.multiLineButton.UseVisualStyleBackColor = true;
+            this.multiLineButton.Click += new System.EventHandler(this.multiLineButton_Click);
+            // 
+            // cultureInvariantButton
+            // 
+            this.cultureInvariantButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cultureInvariantButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.cultureInvariantButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cultureInvariantButton.ForeColor = System.Drawing.Color.Blue;
+            this.cultureInvariantButton.Location = new System.Drawing.Point(130, 73);
+            this.cultureInvariantButton.Name = "cultureInvariantButton";
+            this.cultureInvariantButton.Size = new System.Drawing.Size(22, 22);
+            this.cultureInvariantButton.TabIndex = 20;
+            this.cultureInvariantButton.Text = "?";
+            this.cultureInvariantButton.UseVisualStyleBackColor = true;
+            this.cultureInvariantButton.Click += new System.EventHandler(this.cultureInvariantButton_Click);
+            // 
+            // ignoreCaseButton
+            // 
+            this.ignoreCaseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ignoreCaseButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.ignoreCaseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ignoreCaseButton.ForeColor = System.Drawing.Color.Blue;
+            this.ignoreCaseButton.Location = new System.Drawing.Point(102, 51);
+            this.ignoreCaseButton.Name = "ignoreCaseButton";
+            this.ignoreCaseButton.Size = new System.Drawing.Size(22, 22);
+            this.ignoreCaseButton.TabIndex = 19;
+            this.ignoreCaseButton.Text = "?";
+            this.ignoreCaseButton.UseVisualStyleBackColor = true;
+            this.ignoreCaseButton.Click += new System.EventHandler(this.ignoreCaseButton_Click);
+            // 
+            // replaceModeCheckBox
+            // 
+            this.replaceModeCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.replaceModeCheckBox.CausesValidation = false;
+            this.replaceModeCheckBox.Checked = true;
+            this.replaceModeCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.replaceModeCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.replaceModeCheckBox.Location = new System.Drawing.Point(275, 73);
+            this.replaceModeCheckBox.Name = "replaceModeCheckBox";
+            this.replaceModeCheckBox.Size = new System.Drawing.Size(127, 22);
+            this.replaceModeCheckBox.TabIndex = 15;
+            this.replaceModeCheckBox.Text = "Replace mode";
+            this.replaceModeCheckBox.CheckedChanged += new System.EventHandler(this.replaceModeCheckBox_CheckedChanged);
+            // 
+            // indentedInputCheckBox
+            // 
+            this.indentedInputCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.indentedInputCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.indentedInputCheckBox.Location = new System.Drawing.Point(275, 51);
+            this.indentedInputCheckBox.Name = "indentedInputCheckBox";
+            this.indentedInputCheckBox.Size = new System.Drawing.Size(127, 22);
+            this.indentedInputCheckBox.TabIndex = 13;
+            this.indentedInputCheckBox.Text = "Indented Input";
+            this.indentedInputCheckBox.CheckedChanged += new System.EventHandler(this.indentedInputCheckBox_CheckedChanged);
+            // 
+            // copyButton
+            // 
+            this.copyButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.copyButton.Location = new System.Drawing.Point(405, 56);
+            this.copyButton.Name = "copyButton";
+            this.copyButton.Size = new System.Drawing.Size(75, 34);
+            this.copyButton.TabIndex = 17;
+            this.copyButton.Text = "Copy";
+            this.copyButton.UseVisualStyleBackColor = true;
+            this.copyButton.Click += new System.EventHandler(this.copyButton_Click);
+            // 
+            // testButton
+            // 
+            this.testButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.testButton.Location = new System.Drawing.Point(486, 56);
+            this.testButton.Name = "testButton";
+            this.testButton.Size = new System.Drawing.Size(92, 34);
+            this.testButton.TabIndex = 18;
+            this.testButton.Text = "Test [F5]";
+            this.testButton.Click += new System.EventHandler(this.testButton_Click);
+            // 
+            // singleLineCheckBox
+            // 
+            this.singleLineCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.singleLineCheckBox.Checked = true;
+            this.singleLineCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.singleLineCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.singleLineCheckBox.Location = new System.Drawing.Point(160, 73);
+            this.singleLineCheckBox.Name = "singleLineCheckBox";
+            this.singleLineCheckBox.Size = new System.Drawing.Size(109, 22);
+            this.singleLineCheckBox.TabIndex = 11;
+            this.singleLineCheckBox.Text = "Single Line";
+            // 
+            // multiLineCheckBox
+            // 
+            this.multiLineCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.multiLineCheckBox.Checked = true;
+            this.multiLineCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.multiLineCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.multiLineCheckBox.Location = new System.Drawing.Point(160, 51);
+            this.multiLineCheckBox.Name = "multiLineCheckBox";
+            this.multiLineCheckBox.Size = new System.Drawing.Size(109, 22);
+            this.multiLineCheckBox.TabIndex = 9;
+            this.multiLineCheckBox.Text = "Multi Line";
+            // 
+            // ignoreCaseCheckBox
+            // 
+            this.ignoreCaseCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ignoreCaseCheckBox.Checked = true;
+            this.ignoreCaseCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ignoreCaseCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.ignoreCaseCheckBox.Location = new System.Drawing.Point(11, 51);
+            this.ignoreCaseCheckBox.Name = "ignoreCaseCheckBox";
+            this.ignoreCaseCheckBox.Size = new System.Drawing.Size(142, 22);
+            this.ignoreCaseCheckBox.TabIndex = 5;
+            this.ignoreCaseCheckBox.Text = "Ignore Case";
+            // 
+            // cultureInvariantCheckBox
+            // 
+            this.cultureInvariantCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cultureInvariantCheckBox.Checked = true;
+            this.cultureInvariantCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cultureInvariantCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cultureInvariantCheckBox.Location = new System.Drawing.Point(11, 73);
+            this.cultureInvariantCheckBox.Name = "cultureInvariantCheckBox";
+            this.cultureInvariantCheckBox.Size = new System.Drawing.Size(142, 22);
+            this.cultureInvariantCheckBox.TabIndex = 7;
+            this.cultureInvariantCheckBox.Text = "Culture Invariant";
+            // 
+            // regExAndRepExSplitContainer
+            // 
+            this.regExAndRepExSplitContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.regExAndRepExSplitContainer.Location = new System.Drawing.Point(11, 5);
+            this.regExAndRepExSplitContainer.Name = "regExAndRepExSplitContainer";
+            // 
+            // regExAndRepExSplitContainer.Panel1
+            // 
+            this.regExAndRepExSplitContainer.Panel1.Controls.Add(this.regExLabel);
+            this.regExAndRepExSplitContainer.Panel1.Controls.Add(this.regExTextBox);
+            // 
+            // regExAndRepExSplitContainer.Panel2
+            // 
+            this.regExAndRepExSplitContainer.Panel2.Controls.Add(this.repExLabel);
+            this.regExAndRepExSplitContainer.Panel2.Controls.Add(this.repExTextBox);
+            this.regExAndRepExSplitContainer.Size = new System.Drawing.Size(567, 42);
+            this.regExAndRepExSplitContainer.SplitterDistance = 283;
+            this.regExAndRepExSplitContainer.TabIndex = 4;
+            // 
+            // regExLabel
+            // 
+            this.regExLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.regExLabel.Location = new System.Drawing.Point(0, 3);
+            this.regExLabel.Name = "regExLabel";
+            this.regExLabel.Size = new System.Drawing.Size(283, 16);
+            this.regExLabel.TabIndex = 1;
+            this.regExLabel.Text = "Regular Expression";
+            // 
+            // regExTextBox
+            // 
+            this.regExTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.regExTextBox.HideSelection = false;
+            this.regExTextBox.Location = new System.Drawing.Point(0, 21);
+            this.regExTextBox.Name = "regExTextBox";
+            this.regExTextBox.Size = new System.Drawing.Size(283, 21);
+            this.regExTextBox.TabIndex = 0;
+            // 
+            // repExLabel
+            // 
+            this.repExLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.repExLabel.Location = new System.Drawing.Point(0, 3);
+            this.repExLabel.Name = "repExLabel";
+            this.repExLabel.Size = new System.Drawing.Size(284, 16);
+            this.repExLabel.TabIndex = 2;
+            this.repExLabel.Text = "Replacement Expression";
+            // 
+            // repExTextBox
+            // 
+            this.repExTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.repExTextBox.HideSelection = false;
+            this.repExTextBox.Location = new System.Drawing.Point(0, 21);
+            this.repExTextBox.Name = "repExTextBox";
+            this.repExTextBox.Size = new System.Drawing.Size(280, 21);
+            this.repExTextBox.TabIndex = 0;
+            // 
+            // middleAndBottomSplitContainer
+            // 
+            this.middleAndBottomSplitContainer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.middleAndBottomSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.middleAndBottomSplitContainer.Location = new System.Drawing.Point(0, 0);
+            this.middleAndBottomSplitContainer.Name = "middleAndBottomSplitContainer";
+            this.middleAndBottomSplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // middleAndBottomSplitContainer.Panel1
+            // 
+            this.middleAndBottomSplitContainer.Panel1.Controls.Add(this.textAndResultsSplitContainer);
+            this.middleAndBottomSplitContainer.Panel1MinSize = 61;
+            // 
+            // middleAndBottomSplitContainer.Panel2
+            // 
+            this.middleAndBottomSplitContainer.Panel2.Controls.Add(this.exportResultsButton);
+            this.middleAndBottomSplitContainer.Panel2.Controls.Add(this.resultListView);
+            this.middleAndBottomSplitContainer.Panel2.Controls.Add(this.resultsListLabel);
+            this.middleAndBottomSplitContainer.Panel2MinSize = 89;
+            this.middleAndBottomSplitContainer.Size = new System.Drawing.Size(592, 331);
+            this.middleAndBottomSplitContainer.SplitterDistance = 191;
+            this.middleAndBottomSplitContainer.TabIndex = 0;
+            // 
+            // textAndResultsSplitContainer
+            // 
+            this.textAndResultsSplitContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textAndResultsSplitContainer.Location = new System.Drawing.Point(11, 9);
+            this.textAndResultsSplitContainer.Name = "textAndResultsSplitContainer";
+            // 
+            // textAndResultsSplitContainer.Panel1
+            // 
+            this.textAndResultsSplitContainer.Panel1.Controls.Add(this.textLabel);
+            this.textAndResultsSplitContainer.Panel1.Controls.Add(this.textRichTextBox);
+            // 
+            // textAndResultsSplitContainer.Panel2
+            // 
+            this.textAndResultsSplitContainer.Panel2.Controls.Add(this.resultsLabel);
+            this.textAndResultsSplitContainer.Panel2.Controls.Add(this.resultsRichTextBox);
+            this.textAndResultsSplitContainer.Size = new System.Drawing.Size(567, 166);
+            this.textAndResultsSplitContainer.SplitterDistance = 283;
+            this.textAndResultsSplitContainer.TabIndex = 1;
+            // 
+            // textLabel
+            // 
+            this.textLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textLabel.Location = new System.Drawing.Point(-3, 0);
+            this.textLabel.Name = "textLabel";
+            this.textLabel.Size = new System.Drawing.Size(286, 16);
+            this.textLabel.TabIndex = 1;
+            this.textLabel.Text = "Test Text";
+            // 
+            // textRichTextBox
+            // 
+            this.textRichTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textRichTextBox.HideSelection = false;
+            this.textRichTextBox.Location = new System.Drawing.Point(0, 19);
+            this.textRichTextBox.Name = "textRichTextBox";
+            this.textRichTextBox.Size = new System.Drawing.Size(283, 147);
+            this.textRichTextBox.TabIndex = 0;
+            this.textRichTextBox.Text = "";
+            // 
+            // resultsLabel
+            // 
+            this.resultsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.resultsLabel.Location = new System.Drawing.Point(-3, 0);
+            this.resultsLabel.Name = "resultsLabel";
+            this.resultsLabel.Size = new System.Drawing.Size(287, 16);
+            this.resultsLabel.TabIndex = 2;
+            this.resultsLabel.Text = "Test Results";
+            // 
+            // resultsRichTextBox
+            // 
+            this.resultsRichTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.resultsRichTextBox.HideSelection = false;
+            this.resultsRichTextBox.Location = new System.Drawing.Point(0, 19);
+            this.resultsRichTextBox.Name = "resultsRichTextBox";
+            this.resultsRichTextBox.Size = new System.Drawing.Size(280, 147);
+            this.resultsRichTextBox.TabIndex = 0;
+            this.resultsRichTextBox.Text = "";
+            // 
+            // exportResultsButton
+            // 
+            this.exportResultsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.exportResultsButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.exportResultsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.exportResultsButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.exportResultsButton.ForeColor = System.Drawing.Color.Blue;
+            this.exportResultsButton.Location = new System.Drawing.Point(473, 1);
+            this.exportResultsButton.Name = "exportResultsButton";
+            this.exportResultsButton.Size = new System.Drawing.Size(102, 25);
+            this.exportResultsButton.TabIndex = 32;
+            this.exportResultsButton.Text = "Export Results (CSV)";
+            this.exportResultsButton.UseVisualStyleBackColor = true;
+            this.exportResultsButton.Click += new System.EventHandler(this.exportResultsButton_Click);
+            // 
+            // resultListView
+            // 
+            this.resultListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.resultListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.matchColumnHeader,
+            this.positionColumnHeader,
+            this.lengthColumnHeader});
+            this.resultListView.FullRowSelect = true;
+            this.resultListView.GridLines = true;
+            this.resultListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.resultListView.HideSelection = false;
+            this.resultListView.Location = new System.Drawing.Point(11, 27);
+            this.resultListView.MultiSelect = false;
+            this.resultListView.Name = "resultListView";
+            this.resultListView.Size = new System.Drawing.Size(567, 91);
+            this.resultListView.TabIndex = 1;
+            this.resultListView.UseCompatibleStateImageBehavior = false;
+            this.resultListView.View = System.Windows.Forms.View.Details;
+            this.resultListView.SelectedIndexChanged += new System.EventHandler(this.resultListView_SelectedIndexChanged);
+            // 
+            // matchColumnHeader
+            // 
+            this.matchColumnHeader.Text = "Match";
+            this.matchColumnHeader.Width = 350;
+            // 
+            // positionColumnHeader
+            // 
+            this.positionColumnHeader.Text = "Position";
+            // 
+            // lengthColumnHeader
+            // 
+            this.lengthColumnHeader.Text = "Length";
+            // 
+            // resultsListLabel
+            // 
+            this.resultsListLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.resultsListLabel.Location = new System.Drawing.Point(8, 9);
+            this.resultsListLabel.Name = "resultsListLabel";
+            this.resultsListLabel.Size = new System.Drawing.Size(570, 15);
+            this.resultsListLabel.TabIndex = 0;
+            this.resultsListLabel.Text = "Test Results";
+            // 
+            // copyButtonContextMenu
+            // 
+            this.copyButtonContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyGeneric0MenuItem,
+            this.copyGeneric1MenuItem,
+            this.copyGeneric2MenuItem,
+            this.copyGeneric3MenuItem});
+            this.copyButtonContextMenu.Name = "btnCopyContextMenuStrip";
+            this.copyButtonContextMenu.Size = new System.Drawing.Size(163, 92);
+            // 
+            // copyGeneric0MenuItem
+            // 
+            this.copyGeneric0MenuItem.Image = global::RegExTester.Properties.Resources.CSharpSnippet;
+            this.copyGeneric0MenuItem.Name = "copyGeneric0MenuItem";
+            this.copyGeneric0MenuItem.Size = new System.Drawing.Size(162, 22);
+            this.copyGeneric0MenuItem.Tag = "csharp snippet";
+            this.copyGeneric0MenuItem.Text = "C# code &snippet";
+            this.copyGeneric0MenuItem.Click += new System.EventHandler(this.copyGeneric0MenuItem_Click);
+            // 
+            // copyGeneric1MenuItem
+            // 
+            this.copyGeneric1MenuItem.Image = global::RegExTester.Properties.Resources.CSharp;
+            this.copyGeneric1MenuItem.Name = "copyGeneric1MenuItem";
+            this.copyGeneric1MenuItem.Size = new System.Drawing.Size(162, 22);
+            this.copyGeneric1MenuItem.Tag = "csharp";
+            this.copyGeneric1MenuItem.Text = "&C# escaped string";
+            this.copyGeneric1MenuItem.Click += new System.EventHandler(this.copyGeneric0MenuItem_Click);
+            // 
+            // copyGeneric2MenuItem
+            // 
+            this.copyGeneric2MenuItem.Image = global::RegExTester.Properties.Resources.Html;
+            this.copyGeneric2MenuItem.Name = "copyGeneric2MenuItem";
+            this.copyGeneric2MenuItem.Size = new System.Drawing.Size(162, 22);
+            this.copyGeneric2MenuItem.Tag = "html";
+            this.copyGeneric2MenuItem.Text = "&HTML encoded";
+            this.copyGeneric2MenuItem.Click += new System.EventHandler(this.copyGeneric0MenuItem_Click);
+            // 
+            // copyGeneric3MenuItem
+            // 
+            this.copyGeneric3MenuItem.Image = global::RegExTester.Properties.Resources.Plain;
+            this.copyGeneric3MenuItem.Name = "copyGeneric3MenuItem";
+            this.copyGeneric3MenuItem.Size = new System.Drawing.Size(162, 22);
+            this.copyGeneric3MenuItem.Tag = "plain";
+            this.copyGeneric3MenuItem.Text = "&Plain text";
+            this.copyGeneric3MenuItem.Click += new System.EventHandler(this.copyGeneric0MenuItem_Click);
+            // 
+            // exportSaveFileDialog
+            // 
+            this.exportSaveFileDialog.DefaultExt = "csv";
+            this.exportSaveFileDialog.Filter = "Comma Separated Values|*.csv|All files|*.*";
+            // 
+            // frmMain
+            // 
+            this.AutoScaleBaseSize = new System.Drawing.Size(6, 14);
+            this.ClientSize = new System.Drawing.Size(592, 457);
+            this.Controls.Add(this.topAndMiddleSplitContainer);
+            this.Controls.Add(this.statusBar);
+            this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
+            this.MinimumSize = new System.Drawing.Size(600, 390);
+            this.Name = "frmMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "RegEx Tester";
+            this.Load += new System.EventHandler(this.MainForm_Load);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyUp);
+            ((System.ComponentModel.ISupportInitialize)(this.statusStatusBarPanel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.matchesStatusBarPanel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.executionTimeStatusBarPanel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.contextStatusBarPanel)).EndInit();
+            this.topAndMiddleSplitContainer.Panel1.ResumeLayout(false);
+            this.topAndMiddleSplitContainer.Panel2.ResumeLayout(false);
+            this.topAndMiddleSplitContainer.ResumeLayout(false);
+            this.regExAndRepExSplitContainer.Panel1.ResumeLayout(false);
+            this.regExAndRepExSplitContainer.Panel1.PerformLayout();
+            this.regExAndRepExSplitContainer.Panel2.ResumeLayout(false);
+            this.regExAndRepExSplitContainer.Panel2.PerformLayout();
+            this.regExAndRepExSplitContainer.ResumeLayout(false);
+            this.middleAndBottomSplitContainer.Panel1.ResumeLayout(false);
+            this.middleAndBottomSplitContainer.Panel2.ResumeLayout(false);
+            this.middleAndBottomSplitContainer.ResumeLayout(false);
+            this.textAndResultsSplitContainer.Panel1.ResumeLayout(false);
+            this.textAndResultsSplitContainer.Panel2.ResumeLayout(false);
+            this.textAndResultsSplitContainer.ResumeLayout(false);
+            this.copyButtonContextMenu.ResumeLayout(false);
+            this.ResumeLayout(false);
 
         }
         #endregion
 
 
         private StatusBar statusBar;
-        private StatusBarPanel sbpStatus;
-        private StatusBarPanel sbpContext;
-        private SplitContainer spctTopAndMiddle;
-        private SplitContainer spctMiddleAndBottom;
-        private Button btnCopy;
-        private Button btnTest;
-        private CheckBox cbCultureInvariant;
-        private CheckBox cbSingleLine;
-        private CheckBox cbMultiLine;
-        private CheckBox cbIgnoreCase;
-        private Label lblResultsList;
-        private ListView lvResult;
-        private ColumnHeader chMatch;
-        private ColumnHeader chPosition;
-        private ColumnHeader chLength;
-        private CheckBox cbIndentedInput;
+        private StatusBarPanel statusStatusBarPanel;
+        private StatusBarPanel contextStatusBarPanel;
+        private SplitContainer topAndMiddleSplitContainer;
+        private SplitContainer middleAndBottomSplitContainer;
+        private Button copyButton;
+        private Button testButton;
+        private CheckBox cultureInvariantCheckBox;
+        private CheckBox singleLineCheckBox;
+        private CheckBox multiLineCheckBox;
+        private CheckBox ignoreCaseCheckBox;
+        private Label resultsListLabel;
+        private ListView resultListView;
+        private ColumnHeader matchColumnHeader;
+        private ColumnHeader positionColumnHeader;
+        private ColumnHeader lengthColumnHeader;
+        private CheckBox indentedInputCheckBox;
         private System.ComponentModel.IContainer components;
-        private ContextMenuStrip cmsCopyButton;
-        private ToolStripMenuItem tsmiCopyGeneric1;
-        private ToolStripMenuItem tsmiCopyGeneric2;
-        private ToolStripMenuItem tsmiCopyGeneric3;
-        private CheckBox cbReplaceMode;
-        private SplitContainer spctTextAndResults;
-        private CustomRichTextBox rtbResults;
-        private CustomRichTextBox rtbText;
-        private SplitContainer spctRegExAndRepEx;
-        private TextBox txtRegEx;
-        private TextBox txtRepEx;
-        private ToolStripMenuItem tsmiCopyGeneric0;
-        private Label lblText;
-        private Label lblResults;
-        private Label lblRegEx;
-        private Label lblRepEx;
-        private StatusBarPanel sbpMatches;
-        private StatusBarPanel sbpExecutionTime;
-        private Button btnIgnoreCase;
-        private Button btnCultureInvariant;
-        private Button btnMultiLine;
-        private Button btnSingleLine;
-        private Button btnReplaceMode;
-        private Button btnIndentedInput;
-        private Button btnAbout;
-        private Button btnRegExLibrary;
-        private Button btnRegExCheatSheet;
-		private LinkLabel exportResultsLinkLabel;
+        private ContextMenuStrip copyButtonContextMenu;
+        private ToolStripMenuItem copyGeneric1MenuItem;
+        private ToolStripMenuItem copyGeneric2MenuItem;
+        private ToolStripMenuItem copyGeneric3MenuItem;
+        private CheckBox replaceModeCheckBox;
+        private SplitContainer textAndResultsSplitContainer;
+        private CustomRichTextBox resultsRichTextBox;
+        private CustomRichTextBox textRichTextBox;
+        private SplitContainer regExAndRepExSplitContainer;
+        private TextBox regExTextBox;
+        private TextBox repExTextBox;
+        private ToolStripMenuItem copyGeneric0MenuItem;
+        private Label textLabel;
+        private Label resultsLabel;
+        private Label regExLabel;
+        private Label repExLabel;
+        private StatusBarPanel matchesStatusBarPanel;
+        private StatusBarPanel executionTimeStatusBarPanel;
+        private Button ignoreCaseButton;
+        private Button cultureInvariantButton;
+        private Button multiLineButton;
+        private Button singleLineButton;
+        private Button replaceModeButton;
+        private Button indentedInputButton;
+        private Button aboutButton;
+        private Button regExLibraryButton;
+        private Button regExCheatSheetButton;
 		private SaveFileDialog exportSaveFileDialog;
+        private Button exportResultsButton;
 
     }
 }

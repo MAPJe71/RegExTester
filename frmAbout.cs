@@ -50,7 +50,7 @@ namespace RegExTester
 
         private void frmAbout_Load(object sender, EventArgs e)
         {
-            lblTitle.Text += " - v" + Application.ProductVersion.ToString();
+            titleLabel.Text += " - v" + Application.ProductVersion.ToString();
         }
     }
 }

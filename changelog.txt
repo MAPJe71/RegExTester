@@ -1,4 +1,11 @@
-﻿3.1.0.0 / 2009-04-28 / by Pablo Osés
+﻿3.2.0.0 / 2011-04-06 / by Pablo Osés
+New features: Detection of multiple captures inside a capture group
+Minor changes: Code janitoring, Credits update in About Window
+
+3.1.1.0 / 2010-02-25 / by Eric Lebetsamer
+New features: Export to CSV
+
+3.1.0.0 / 2009-04-28 / by Pablo Osés
 New features: RegEx.Replace(), Context menu icons, C# Code snippet copy, RichTextBoxes WordWrap, Execution time, Mono compatible
 Bug fixes: Label Typos, New SuspendLayout techniques and a lot of code re-engineering
 
