@@ -1,0 +1,387 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Article Source</title>
+<link rel="stylesheet" type="text/css" href="http://s.codeproject.com/App_Themes/Std/CSS/CodeProject.css?dt=2.3.110520.2" />
+<base href="http://www.codeproject.com/KB/string/" />
+</head>
+<body>
+<!--
+HTML for article "RegEx Tester - Regular Expression Tester" by Pablo Os&eacute;s
+URL: http://www.codeproject.com/KB/string/regextester.aspx
+Copyright 2008 by Pablo Os&eacute;s
+All formatting, additions and alterations Copyright © CodeProject, 1999-2011
+-->
+
+
+
+
+<div>
+
+
+
+
+<!-- Start Article -->
+<span id="ArticleContent">
+<ul class="download">
+<li><a href="regextester/RegExTester_3.2.0.0_bin.zip">Download demo - 28 KB</a> </li>
+
+<li><a href="regextester/RegExTester_3.2.0.0_src.zip">Download source - 53 KB</a> </li>
+</ul>
+
+<p><img height="390" alt="RegEx Tester Screenshot" hspace="0" src="regextester/RegExTester31.png" width="600" border="0" /></p>
+
+<h2>Introduction</h2>
+
+<p>With RegEx Tester, you can fully develop and test your regular expression against a target text.<br />Its UI is designed to aid you in the RegEx development; especially the big and complex ones.<br />It uses and supports almost ALL of the features available in the .NET RegEx class.<br />About this article's writing, I have to tell you that English is not my native language and that I did my best in the redaction, grammar and spelling. You may and will find writing errors so please tell me about them so I can correct them.</p>
+
+<h2>Feature List</h2>
+
+<p>If you have an idea for a new feature, you could code it up and send it to me by email and I will add it here with the proper credits for your work. If you don't know how to properly code that idea, comment about it&nbsp;and other people (or me) can do it. Let's collaborate.</p>
+
+<ul>
+<li><strong>Asynchronous execution</strong> enabling the user to abort the execution. Even if you make a <a href="http://www.regular-expressions.info/catastrophic.html">Catastrophic Backtracking</a> mess. <em>[by Pablo Oses]</em> </li>
+
+<li><strong>Indented Input mode</strong> which strips \r \n \t \v and spaces before execution. This allows you to write those ugly, long and cryptic RegExs in an indented and spaced fashion. <em>[by Pablo Oses]</em> </li>
+
+<li><strong>Replace mode</strong> which enables the use of <code>RegEx.Replace() </code>function <em>[by Pablo Oses]</em> </li>
+
+<li><strong>Mono Compatible</strong> which makes it&nbsp;capable of running on Linux <em>[by Pablo Oses]</em> </li>
+
+<li><strong>Test Text highlighting</strong> based on results selection <em>[by Davide Mauri]</em> </li>
+
+<li><strong>F5 Hot Key</strong> to run the Test without changing the cursor position or selection. Get off of that Mouse ! <em>[by Pablo Oses]</em> </li>
+
+<li><strong>Listing of the matches</strong> showing position, length and anonymous or named capture groups <em>[by Davide Mauri and Pablo Oses]</em> </li>
+
+<li>A button to &quot;Clipboard Copy&quot; the RegEx selecting &quot;C# code snippet&quot;, &quot;C# escaped <code>string</code>&quot;, &quot;HTML encoded&quot; or &quot;Plain text&quot; modes <em>[by Kurt Griffiths and Pablo Oses]</em> </li>
+
+<li>Adjust the size of each of the 3 sections of the window (RegEx, Text and Results). <em>[by Pablo Oses]</em> </li>
+
+<li>Ignore Case, MultiLine, SingleLine and Culture Invariant options <em>[by Davide Mauri and Pablo Oses]</em> </li>
+
+<li>Window resizing and maximizing capability <em>[by Kurt Griffiths and Pablo Oses]</em> </li>
+
+<li>Quick links to a RegEx Library and ILoveJackDaniels' CheatSheet <em>[by Pablo Oses]</em> </li>
+
+<li>Find function inside the Test Text <em>[by Pablo Oses]</em> </li>
+
+<li>Execution time measurements <em>[by Pablo Oses]</em> </li>
+</ul>
+
+<h2>What is Special About this Program?</h2>
+
+<p>As <em>balazs_hideghety</em> said in his comment, there are other popular, <em>and great</em> programs like RegEx buddy or Expresso that are extremely powerful and seem to be the last word on RegEx development and testing, but I still use this tool. Why? I needed a tool that helped me design HTML Extraction RegExs. For example (as of May 2009), if you evaluate this... </p>
+
+<pre lang="html">&lt;td class=&quot;Frm_MsgSubject&quot;&gt;&lt;[^&gt;]*?&gt;(?&lt;title&gt;.*?)&lt;/a&gt;.*?
+	&lt;td class=&quot;Frm_MsgAuthor&quot;&gt;&lt;[^&gt;]*?&gt;(?&lt;author&gt;.*?)&lt;/a&gt;.*?
+&lt;td class=&quot;Frm_MsgDate&quot;[^&gt;]*?&gt;(?&lt;date&gt;.*?)&amp;.*?
+	&lt;td class=&quot;MsgBd BdSel &quot;&gt;.*?&lt;td colspan=&quot;2&quot;&gt;(?&lt;body&gt;[^&lt;]*?)&lt;&quot;</pre>
+
+<p>... against the HTML source of this page, you would be parsing and extracting in only one operation all the comments inside this page with its corresponding title, body, date, user, etc. RegExs are really powerful when you are extracting data of real world websites. But the problem is that the RegExs needed are looooooong and extremely cryptic. You really start to need some spacing and indentation there to unofbuscate it and you need a big window with a lot of space and a test textbox able to handle big raw HTML documents so there's when this tool turns out to be really useful.</p>
+
+<p>The same RegEx while I was developing it in <code>RegExTester</code> looked like this: </p>
+
+<pre lang="html">&lt;td\sclass=&quot;Frm_MsgSubject&quot;&gt;    &lt;[^&gt;]*?    &gt;    (?&lt;title&gt;.*?)    &lt;/a&gt;
+.*?
+&lt;td\sclass=&quot;Frm_MsgAuthor&quot;&gt;        &lt;[^&gt;]*?    &gt;    (?&lt;author&gt;.*?)    &lt;/a&gt;
+.*?
+&lt;td\sclass=&quot;Frm_MsgDate&quot;    [^&gt;]*?    &gt;    (?&lt;date&gt;.*?)    &amp;
+.*?
+&lt;td\sclass=&quot;MsgBd\sBdSel\s&quot;&gt;    .*?    &lt;td\scolspan=&quot;2&quot;&gt;    (?&lt;body&gt;[^&lt;]*?)    &lt;</pre>
+
+<p>As you can see, I think that ugly RegEx development aid is the key feature of this program. </p>
+
+<h2>The Core of the Program: AsyncTest()</h2>
+
+<p>This is a simplified version of the function to make it more readable:</p>
+
+<pre lang="cs">// Create the options object based on the UI checkboxes
+RegexOptions regexOptions = new RegexOptions();
+if (cbIgnoreCase.Checked) regexOptions |= RegexOptions.IgnoreCase;
+if (cbCultureInvariant.Checked) regexOptions |= RegexOptions.CultureInvariant;
+if (cbMultiLine.Checked) regexOptions |= RegexOptions.Multiline;
+if (cbSingleLine.Checked) regexOptions |= RegexOptions.Singleline;
+if (cbIndentedInput.Checked) regexOptions |= RegexOptions.IgnorePatternWhitespace;
+
+// Creates the RegEx engine passing the RegEx string and the options object
+Regex regex = new Regex(txtRegEx.Text, regexOptions);
+
+// This executes the Regex and collects the results
+// The execution isn't done until a member of the matchCollection is read.
+// So I read the Count property for the regex to really execute from start to finish
+MatchCollection matchCollection = regex.Matches(rtbText.Text);
+int matchesFound = matchCollection.Count;
+
+// Also do the RegEx replacement if the user asked for it
+if (cbReplaceMode.Checked)
+    rtbResults.Text = regex.Replace(rtbText.Text, txtRepEx.Text);
+
+// Add the Capture Group columns to the Results ListView
+int[] groupNumbers = regex.GetGroupNumbers();
+string[] groupNames = regex.GetGroupNames();
+string groupName = null;
+
+foreach (int groupNumber in groupNumbers)
+{
+    if (groupNumber &gt; 0)
+    {
+        groupName = &quot;Group &quot; + groupNumber;
+        if (groupNames[groupNumber] != groupNumber.ToString()) 
+            groupName += &quot; (&quot; + groupNames[groupNumber] + &quot;)&quot;;
+        lvResult.Columns.Add(groupName, 100, HorizontalAlignment.Left);
+    }
+}
+
+// Process each of the Matches!
+foreach (Match match in matchCollection)
+{
+    //Add it to the grid
+    ListViewItem lvi = lvResult.Items.Add(match.ToString());
+    lvi.SubItems.Add(match.Index.ToString());
+    lvi.SubItems.Add(match.Length.ToString());
+    for (int c = 1; c &lt; match.Groups.Count; c++)
+    {
+        lvi.SubItems.Add(match.Groups[c].Value);
+    }
+
+    //Highligth the match in the RichTextBox
+    rtbText.Select(match.Index, match.Length);
+    rtbText.SelectionColor = Color.Red;
+}</pre>
+
+<h2>The Asynchronous Execution Feature. Where the Fun Starts !</h2>
+
+<p>I first coded it using a <code>BackgroundWorker</code> but I had to throw it out because it seems that it's only useful when you want to abort a long loop that is IN your code... But it doesn't help you when you call an external function that takes too long to complete.</p>
+
+<p>So I re-coded it from scratch using a more low level <code>Thread</code> managing that resulted in being more simple and clear than the previous technique once it was done.</p>
+
+<pre lang="cs">private Thread worker; // The worker that really does the execution in a separate thread.
+
+private void MainForm_Load(object sender, System.EventArgs e)
+{
+    // This is a critical line.
+    // It allows the other thread to access the controls of this class/object.
+    Control.CheckForIllegalCrossThreadCalls = false;
+}
+
+/// &lt;summary&gt;
+/// Handle the multiple behaviors of the Test button based on its text
+/// &lt;/summary&gt;
+private void btnTest_Click(object sender, System.EventArgs e)
+{
+    if (btnTest.Text == STOPPED_MODE_BUTTON_TEXT)
+    {
+        StartTest();
+    }
+    else if (btnTest.Text == RUNNING_MODE_BUTTON_TEXT)
+    {
+        AbortTest();
+    }
+}
+
+/// &lt;summary&gt;
+/// Prepare and launch the asynchronous execution using another thread
+/// &lt;/summary&gt;
+private void StartTest()
+{
+    // Creates the separate Thread for executing the Test
+    worker = new Thread(AsyncTest);
+
+    // After this instruction if the worker hangs and this thread exits,
+    // then nobody has to wait for the worker to finish. 
+    // (e.g. The worker will be aborted if the user wants to close the app.)
+    worker.IsBackground = true;
+
+    // Start the Asynchronous Test function
+    worker.Start();
+}
+
+/// &lt;summary&gt;
+/// Instructs to abort the asynchronous execution of the Test.
+/// &lt;/summary&gt;
+private void AbortTest()
+{
+    // This generates a ThreadAbortException at the worker function AsyncTest()
+    if (worker.IsAlive) worker.Abort();
+}
+
+/// &lt;summary&gt;
+/// This is the core of the app. The RegEx execution and processing function.
+/// It's being run on a separated thread.
+/// &lt;/summary&gt;
+private void AsyncTest()
+{
+    // Every line in this function is susceptible of a ThreadAbortException
+    // which is how the user is able to stop it.
+    try
+    {
+        sbpStatus.Text = &quot;Test running...&quot;;
+        // ***************************************
+        // Here is the code that you already read 
+        // in the previous section of this article
+        // [The core of the program: AsyncTest()]
+        // ***************************************
+        sbpStatus.Text = &quot;Test success.&quot;;
+    }
+    catch (ThreadAbortException)
+    {
+        sbpStatus.Text = &quot;Test aborted by the user.&quot;;
+    }
+    catch (Exception e)
+    {
+        sbpStatus.Text = &quot;Test aborted by an error.&quot;;
+        // Any other Exception is shown to the user
+        MessageBox.Show(e.Message, &quot;Error&quot;, MessageBoxButtons.OK, MessageBoxIcon.Error);
+    }
+    finally
+    {
+        // Restore the btnText functionality
+        btnTest.Text = STOPPED_MODE_BUTTON_TEXT;
+    }
+}</pre>
+
+<h2>Program's History</h2>
+<p>This tool was originally written by Davide Mauri (2003). I used it A LOT at work and for personal projects. Thanks to the fact that it was open source, I started to add new features that I needed. One day the program was so different that I wanted to give all these enhancements to Davide so I contacted him by email and he gave me permission to re-release it and gave me the link to the Kurt Griffiths version of the program (2006). I made a mix of his and my enhancements and polished the UI.</p>
+
+<h2>Recommended Links</h2>
+<ul>
+	<li>RegEx Tutorial Website: <a href="http://www.regular-expressions.info/">http://www.regular-expressions.info/</a> </li>
+	<li>RegEx Library: <a href="http://regexlib.com/">http://www.regexlib.com/</a> </li>
+	<li>RegEx CheatSheet: <a href="http://www.addedbytes.com/cheat-sheets/regular-expressions-cheat-sheet/">http://www.addedbytes.com/cheat-sheets/regular-expressions-cheat-sheet/</a> </li>
+</ul>
+
+<h2>Other Links</h2>
+<ul>
+	<li>Author's email: opablo aa-tt gmail dd-oo-tt com </li>
+	<li>Author's Public GitHub Repo: <a href="https://github.com/opablo/RegExTester">https://github.com/opablo/RegExTester</a> </li>
+	<li>Author's SF Project (deprecated): <a href="http://sourceforge.net/projects/regextester">http://sourceforge.net/projects/regextester</a> </li>
+	<li>Kurt Griffiths' CP Article: <a href="http://www.codeproject.com/KB/cs/dotnetregextest.aspx">http://www.codeproject.com/KB/cs/dotnetregextest.aspx</a> </li>
+	<li>Davide Mauri's SF Project: <a href="http://sourceforge.net/projects/regextest">http://sourceforge.net/projects/regextest</a> </li>
+	<li>Davide Mauri's Homepage: <a href="http://www.davidemauri.it/">http://www.davidemauri.it/</a> </li>
+</ul>
+
+<h2>Article History</h2>
+<ul>
+	<li>2011-05-21 - Article adapted to the new 3.2.0.0 version of the app </li>
+	<li>2009-05-03 - Article adapted to the new 3.1.0.0 version of the app </li>
+	<li>2008-03-08 - Moved histories to the bottom and updated links </li>
+	<li>2008-03-05 - Article adapted to the new 3.0.0.0 version of the app with async execution </li>
+	<li>2008-03-04 - Article completely rewritten to show and comment pieces of code used in the project </li>
+	<li>2008-03-02 - Initial article </li>
+</ul>
+
+<h2>Program History</h2>
+<ul>
+	<li>2011-04-06 - <a href="regextester/RegExTester31_src.zip">3.2.0.0</a> - by Pablo Os&eacute;s
+	<ul>
+		<li>New features 
+			<ul>
+				<li>Detection of multiple captures inside a capture group </li>
+			</ul>
+		</li>
+		<li>Minor changes 
+		<ul>
+			<li>Code janitoring </li>
+			<li>Credits update in About Window </li>
+		</ul>
+		</li>
+	</ul>
+	</li>
+	<li>2010-02-25 - <a href="regextester/RegExTester31_src.zip">3.1.1.0</a> - by Eric Lebetsamer
+	<ul>
+		<li>New features 
+			<ul>
+				<li>Export to CSV </li>
+			</ul>
+		</li>
+	</ul>
+	</li>
+	<li>2009-05-03 - <a href="regextester/RegExTester31_src.zip">3.1.0.0</a> - by Pablo Os&eacute;s 
+	<ul>
+		<li>New features 
+			<ul>
+				<li><code>RegEx.Replace()</code> </li>
+				<li>Context menu icons </li>
+				<li>C# code snippet copy </li>
+				<li><code>RichTextBox</code>es WordWrap </li>
+				<li>Execution time </li>
+				<li>Mono compatible </li>
+			</ul>
+		</li>
+		<li>Bug fixes 
+		<ul>
+			<li>Label Typos </li>
+			<li>New <code>SuspendLayout</code> techniques and a lot of code re-engineering </li>
+		</ul>
+		</li>
+	</ul>
+	</li>
+	<li>2008-03-05 - <a href="regextester/RegExTester3_src.zip">3.0.0.0</a> - by Pablo Os&eacute;s&nbsp; 
+	<ul>
+		<li>New features 
+		<ul>
+			<li>Asynchronous execution </li>
+			<li>Copy Feature enhanced </li>
+			<li>Test <code>Textbox</code> context menu </li>
+			<li>Find functions </li>
+		</ul>
+		</li>
+	</ul>
+	</li>
+	<li>2008-03-03 - <a href="regextester/RegExTester201_src.zip">2.0.1.0</a> - by Pablo Os&eacute;s 
+	<ul>
+		<li>New features 
+		<ul>
+			<li>RegEx Cheat-Sheet&nbsp; </li>
+		</ul>
+		</li>
+		<li>Bug fixes 
+		<ul>
+			<li>Multiline behavior </li>
+			<li>Performance issues&nbsp; </li>
+			<li>Results list click event </li>
+		</ul>
+		</li>
+	</ul>
+	</li>
+	<li>2008-03-02 - <a href="regextester/RegExTester2_src.zip">2.0.0.0</a> - by Pablo Os&eacute;s 
+	<ul>
+		<li>New features 
+		<ul>
+			<li>Group names </li>
+			<li>window maximize </li>
+			<li>Hot Keys </li>
+			<li>Indented Input </li>
+			<li>Culture Invariant </li>
+			<li>Resizeable Panels </li>
+		</ul>
+		</li>
+	</ul>
+	</li>
+	<li>2006-xx-xx - <a href="http://www.codeproject.com/KB/cs/dotnetregextest/dotnetregextest_src.zip">1.0.0.3</a> - by Kurt Griffiths&nbsp; 
+	<ul>
+		<li>New features 
+		<ul>
+			<li>Copy and window resize </li>
+		</ul>
+		</li>
+	</ul>
+	</li>
+	<li>2003-xx-xx - <a href="http://downloads.sourceforge.net/regextest/RegExTester_1.0.0.3.zip?modtime=1060214400&amp;big_mirror=0">1.0.0.3</a> - by Davide Mauri 
+	<ul>
+		<li>Original version </li>
+	</ul>
+	</li>
+</ul>
+
+</span>
+<!-- End Article -->
+
+
+
+
+</div> 
+</body>
+</html>

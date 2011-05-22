@@ -11,7 +11,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Pablo Osés")]
 [assembly: AssemblyProduct("RegEx Tester")]
-[assembly: AssemblyCopyright("2008 Pablo Osés")]
+[assembly: AssemblyCopyright("2011 Pablo Osés")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]		
 
