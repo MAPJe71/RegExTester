@@ -166,7 +166,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <Content Include="icons\App.ico" />
-    <None Include="app.config" />
     <None Include="changelog.txt" />
     <Content Include="icons\Copy.png" />
     <Content Include="icons\CSharp.png" />
